@@ -200,9 +200,7 @@
                   <a {% if request.path == '/' %} class="active" {% endif %} href="{% url 'home' %}">Home</a>
                 </li>
                 <li>
-                  <a href="about.html">
-                  About
-                  </a>
+                  <a href="{% url 'about' %}" {% if request.path == '/about/' %} class="active" {% endif %}>About</a>
                 </li>
                 <li>
                   <a href="#">Catalog <span class="caret"></span></a>
