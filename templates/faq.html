@@ -1,0 +1,806 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">    
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <meta name="author" content="Ecommerce">
+    <title>eMart - eCommerce Website Template</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/img/favicon.png">
+
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css">    
+    <link rel="stylesheet" href="assets/css/bootstrap-select.min.css" type="text/css">   
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="assets/fonts/line-icons.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/main.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/animate.css" type="text/css">  
+    <link rel="stylesheet" href="assets/css/owl.carousel.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/owl.theme.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/component.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/settings.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/slick.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/slick-theme.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/nivo-lightbox.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/ion.rangeSlider.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/ion.rangeSlider.skinFlat.css" type="text/css">
+    <link rel="stylesheet" href="assets/css/slicknav.css" type="text/css">  
+    <link rel="stylesheet" href="assets/css/responsive.css" type="text/css">
+    
+  </head>
+
+  <body>  
+    <!-- Header Section Start -->
+    <div class="header">    
+
+      <!-- Start Top Bar -->
+      <div class="top-bar">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 col-sm-2">
+              <div class="language-wrapper">
+                <div class="box-language">
+                  <form id="form-language">
+                    <div class="btn-group toggle-wrap">
+                      <span class="toggle">
+                        <span><img src="assets/img/language/flag-lang.png" alt="English" title="English" height="11" width="16"> English</span>
+                        <span class="hidden">Language</span>
+                      </span>
+                      <ul style="display: none;" class="toggle_cont pull-right">
+                        <li>
+                        <button class="language-select selected" type="button" name="en-gb">
+                        <img src="assets/img/language/en-gb.png" alt="English" title="English" height="11" width="16">
+                        English </button>
+                        </li>
+                        <li>
+                        <button class="language-select" type="button" name="de-DE">
+                        <img src="assets/img/language/de-DE.png" alt="Deutsch" title="Deutsch" height="11" width="16">
+                        Deutsch </button>
+                        </li>
+                        <li>
+                        <button class="language-select" type="button" name="ru-ru">
+                        <img src="assets/img/language/ru-ru.png" alt="Русский" title="Русский" height="11" width="16">
+                        Русский </button>
+                        </li>
+                      </ul>
+                    </div>
+                  </form>
+                </div>
+                <div class="box-currency">
+                  <form method="post" id="form-currency">
+                    <div class="btn-group toggle-wrap">
+                      <span class="toggle">
+                        $USD                                              
+                      </span>
+                      <ul class="toggle_cont pull-right">
+                        <li>
+                        <button class="currency-select selected" type="button" name="USD">
+                        $ USD </button>
+                        </li>
+                        <li>
+                        <button class="currency-select" type="button" name="EUR">
+                        € EUR
+                        </button>
+                        </li>
+                        <li>
+                        <button class="currency-select" type="button" name="GBP">
+                        £ GBP </button>
+                        </li>
+                      </ul>
+                    </div>
+                  </form>
+                </div>                
+                <a href="#"><i class="icon-phone"></i> Call Us: (123) 456- 789</a>
+              </div>              
+              <div class="clear"></div>              
+            </div>
+            <div class="col-md-8 col-sm-10">              
+              <!-- shopping cart end -->
+              <div class="search-area">
+                <form>
+                  <div class="control-group">
+                    <ul class="categories-filter animate-dropdown">
+                      <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="category.html">Categories <span class="caret"></span></a>
+                        <ul class="dropdown-menu animated fadeIn">
+                          <li class="menu-header">Clothing</li>
+                          <li><a tabindex="-1" href="#">- Men</a></li>
+                          <li><a tabindex="-1" href="#">- Women</a></li>
+                          <li><a tabindex="-1" href="#">- Boys</a></li>
+                          <li><a tabindex="-1" href="#">- Girls</a></li>
+                          <li class="menu-header">Electronics</li>
+                          <li><a tabindex="-1" href="#">- Laptops</a></li>
+                          <li><a tabindex="-1" href="#">- Desktops</a></li>
+                          <li><a tabindex="-1" href="#">- Cameras</a></li>
+                          <li><a tabindex="-1" href="#">- Mobile Phones</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                    <input class="search-field" placeholder="Search here...">
+                    <a class="search-button" href="#"><i class="icon-magnifier"></i></a> 
+                  </div>
+                </form>
+              </div>             
+
+              <div class="shop-cart">
+                <ul>                
+                  <li><a class="cart-icon cart-btn" href="wishlist.html"><span class="icon-heart"></span></a></li>
+                  <li>
+                    <a href="#" class="cart-icon cart-btn"><i class="icon-basket"></i><span class="cart-label">3</span></a>
+                    <div class="cart-box">
+                      <div class="popup-container">
+                        <div class="cart-entry">
+                          <a href="#" class="image">
+                            <img src="assets/img/products/product-menu-1.jpg"  alt="">
+                          </a>
+                          <div class="content">
+                            <a href="#" class="title">Pullover Batwing</a>
+                            <p class="quantity">Quantity: 3</p>
+                            <span class="price">$45.00</span>
+                          </div>
+                          <div class="button-x">
+                            <i class="icon-close"></i>
+                          </div>
+                        </div>
+                        <div class="cart-entry">
+                          <a href="#" class="image">
+                            <img src="assets/img/products/product-menu-2.jpg"  alt="">
+                          </a>
+                          <div class="content">
+                            <a href="#" class="title">Pullover Batwing</a>
+                            <p class="quantity">Quantity: 3</p>
+                            <span class="price">$90.00</span>
+                          </div>
+                          <div class="button-x">
+                            <i class="icon-close"></i>
+                          </div>
+                        </div>
+                        <div class="summary">
+                          <div class="subtotal">Sub Total</div>
+                          <div class="price-s">$210.5</div>
+                        </div>
+                        <div class="cart-buttons">
+                            <a href="#" class="btn btn-border-2">View Cart</a>
+                            <a href="#" class="btn btn-common">Checkout</a>
+                            <div class="clear"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>  
+                </ul> 
+              </div>          
+              <div class="account link-inline">
+                <a href="login-form.html"><i class="icon-login"></i><span class="hidden-mobile">login/register</span></a>
+              </div> 
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Top Bar -->       
+
+      <!-- Start  Logo & Naviagtion  -->
+      <nav class="navbar navbar-default" data-spy="affix" data-offset-top="50">
+        <div class="container">
+          <div class="row">
+            <div class="navbar-header">
+              <!-- Stat Toggle Nav Link For Mobiles -->
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <i class="fa fa-bars"></i>
+              </button>
+              <a class="navbar-brand" href="index.html">
+                <img src="assets/img/logo.png" alt="">
+              </a> 
+            </div>
+            <div class="navbar-collapse collapse">
+              <!-- Start Navigation List -->
+              <ul class="nav navbar-nav navbar-right">
+                <li>
+                  <a href="index.html">Home <span class="caret"></span></a>
+                  <ul class="dropdown">
+                    <li>
+                      <a href="index.html">
+                        Home V1 
+                      </a>
+                    </li>  
+                    <li>
+                      <a href="index-2.html">
+                        Home V2
+                      </a>
+                    </li>      
+                  </ul>
+                </li>
+                <li>
+                  <a href="about.html">
+                  About
+                  </a>
+                </li>
+                <li>
+                  <a href="#">Catalog <span class="caret"></span></a>
+                  <div class="dropdown mega-menu megamenu1">
+                    <div class="row">
+                      <div class="col-sm-3 col-xs-12">
+                        <ul class="menulinks">
+                          <li class="maga-menu-title">
+                            <a href="#">Men</a>
+                          </li>
+                          <li><a href="category.html">Clothing</a></li>
+                          <li><a href="category.html">Handbags</a></li>
+                          <li><a href="category.html">Maternity</a></li>
+                          <li><a href="category.html">Jewelry</a></li>
+                          <li><a href="category.html">Scarves</a></li>
+                        </ul>
+                      </div>
+                      <div class="col-sm-3 col-xs-12">
+                        <ul class="menulinks">
+                          <li class="maga-menu-title">
+                            <a href="#">Women</a>
+                          </li>
+                          <li><a href="category.html">Handbags</a></li>
+                          <li><a href="category.html">Jewelry</a></li>
+                          <li><a href="category.html">Clothing</a></li>
+                          <li><a href="category.html">Watches</a></li>
+                          <li><a href="category.html">Hats</a></li>
+                        </ul>
+                      </div>
+                      <div class="col-sm-5 col-sm-offset-1 col-xs-12">
+                        <span class="block-last">
+                          <img src="assets/img/block_menu.jpg"  alt="">
+                        </span>
+                      </div>
+                    </div>                    
+                  </div>
+                </li>
+                <li>
+                  <a href="#">Shop <span class="caret"></span></a>
+                  <div class="dropdown mega-menu megamenu2">
+                    <div class="row">
+                      <div class="col-sm-6 col-xs-12">
+                        <ul class="menulinks">
+                          <li class="maga-menu-title">
+                            <a href="#">Normal Shop Pages</a>
+                          </li>
+                          <li><a href="category.html">Single Category</a></li>
+                          <li><a href="product-details.html">Product Details</a></li>                      
+                          <li><a href="shopping-cart.html">Cart Page</a></li>
+                          <li><a href="checkout.html">Checkout Page</a></li> 
+                          <li><a href="single-shop.html">Seller's Store</a></li>
+                          <li><a href="shop-grid.html">Shop Grid Sidebar</a></li>
+                          <li><a href="shop-list.html">Shop List Sidebar</a></li>
+                          <li><a href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
+                          <li><a href="order.html">Order Track</a></li>
+                        </ul>
+                      </div>
+                      <div class="col-sm-6 col-xs-12">
+                        <ul class="menulinks">
+                          <li class="maga-menu-title">
+                            <a href="#">Multi-vendor Pages</a>
+                          </li>
+                          <li><a href="submission.html">Product Submission</a></li>
+                          <li><a href="single-shop.html">Seller Store Page</a></li>  
+                          <li><a href="edit-profile.html">Seller Account</a></li>
+                          <li><a href="login.html">Log In</a></li>
+                          <li><a href="shop.html">Search</a></li>
+                        </ul>
+                      </div>
+                    </div>                    
+                  </div>
+                </li>
+                <li>
+                  <a class="active" href="#">Pages <span class="caret"></span></a>
+                  <ul class="dropdown">
+                    <li>
+                      <a href="about.html">
+                      About Us
+                      </a>
+                    </li>
+                    <li>
+                      <a href="services.html">
+                      Services
+                      </a>
+                    </li>
+                    <li>
+                      <a href="contact.html">
+                      Contact Us
+                      </a>
+                    </li>                    
+                    <li>
+                      <a href="product-details.html">
+                      Product Details
+                      </a>
+                    </li>
+                    <li>
+                      <a href="team.html">
+                      Team Member
+                      </a>
+                    </li>
+                    <li>
+                      <a href="checkout.html">
+                      Checkout
+                      </a>
+                    </li>
+                    <li>
+                      <a href="compare.html">
+                      Compare
+                      </a>
+                    </li>
+                    <li>
+                      <a href="shopping-cart.html">
+                      Shopping cart
+                      </a>
+                    </li>
+                     <li>
+                      <a class="active" href="faq.html">
+                      FAQs
+                      </a>
+                    </li>
+                     <li>
+                      <a href="wishlist.html">
+                      Wishlist
+                      </a>
+                    </li>
+                     <li>
+                      <a href="404.html">
+                      404 Error
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Blog <span class="caret"></span></a>
+                  <ul class="dropdown">                    
+                    <li>
+                      <a href="blog.html">
+                      Blog Right Sidebar
+                      </a>
+                    </li>
+                    <li>
+                      <a href="blog-left-sidebar.html">
+                      Blog Left Sidebar
+                      </a>
+                    </li>
+                    <li>
+                      <a href="blog-full-width.html">
+                      Blog Full Width
+                      </a>
+                    </li>
+                    <li>
+                      <a href="blog-details.html">
+                      Blog Details
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="contact.html">
+                  Contact
+                  </a>
+                </li>
+              </ul>
+              <!-- End Navigation List -->
+            </div>
+          </div>
+        </div>
+        <!-- End Header Logo & Naviagtion -->
+
+        <!-- Mobile Menu Start -->
+        <ul class="mobile-menu">
+          <li>
+            <a href="index.html">
+              Home
+            </a>
+            <ul class="dropdown">
+              <li>
+                <a href="index.html">Home V1</a>
+              </li>  
+              <li>
+                <a href="index-2.html">Home V2</a>
+              </li>    
+            </ul>
+          </li>
+          <li>
+            <a href="about.html">About</a>
+          </li>
+          <li>
+            <a href="#">Catalog</a>
+            <ul class="dropdown menulinks">
+              <li class="maga-menu-title">
+                <a href="#">Men</a>
+              </li>
+              <li><a href="category.html">Clothing</a></li>
+              <li><a href="category.html">Handbags</a></li>
+              <li><a href="category.html">Maternity</a></li>
+              <li><a href="category.html">Jewelry</a></li>
+              <li><a href="category.html">Scarves</a></li>
+              <li class="maga-menu-title">
+                <a href="#">Women</a>
+              </li>
+              <li><a href="category.html">Handbags</a></li>
+              <li><a href="category.html">Jewelry</a></li>
+              <li><a href="category.html">Clothing</a></li>
+              <li><a href="category.html">Watches</a></li>
+              <li><a href="category.html">Hats</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Shop</a>
+            <ul class="menulinks">
+              <li class="maga-menu-title">
+                <a href="#">Normal Shop Pages</a>
+              </li>
+              <li><a href="category.html">Single Category</a></li>
+              <li><a href="product-details.html">Product Details</a></li>                      
+              <li><a href="shopping-cart.html">Cart Page</a></li>
+              <li><a href="checkout.html">Checkout Page</a></li> 
+              <li><a href="single-shop.html">Seller's Store</a></li>
+              <li><a href="shop-grid.html">Shop Grid Sidebar</a></li>
+              <li><a href="shop-list.html">Shop List Sidebar</a></li>
+              <li><a href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
+              <li><a href="order.html">Order Track</a></li>
+              <li class="maga-menu-title">
+                <a href="#">Multi-vendor Pages</a>
+              </li>  
+              <li><a href="submission.html">Product Submission</a></li>
+              <li><a href="single-shop.html">Seller Store Page</a></li>  
+              <li><a href="edit-profile.html">Seller Account</a></li>
+              <li><a href="login.html">Log In</a></li>
+              <li><a href="shop.html">Search</a></li>
+            </ul>
+          </li>
+          <li>
+            <a class="active" href="#">Pages</a>
+            <ul class="dropdown">
+              <li>
+                <a href="about.html">About Us</a>
+              </li>
+              <li>
+                <a href="services.html">Services</a>
+              </li>
+              <li>
+                <a href="contact.html">Contact Us</a>
+              </li>                    
+              <li>
+                <a href="product-details.html">Product Details</a>
+              </li>
+              <li>
+                <a href="team.html">Team Member</a>
+              </li>
+              <li>
+                <a href="checkout.html">Checkout</a>
+              </li>
+              <li>
+                <a href="compare.html">Compare</a>
+              </li>
+              <li>
+                <a href="shopping-cart.html">Shopping cart</a>
+              </li>
+               <li>
+                <a class="active" href="faq.html">FAQs</a>
+              </li>
+               <li>
+                <a href="wishlist.html">Wishlist</a>
+              </li>
+               <li>
+                <a href="404.html">404 Error</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Blog</a>
+            <ul class="dropdown">                    
+              <li>
+                <a href="blog.html">Blog Right Sidebar</a>
+              </li>
+              <li>
+                <a href="blog-left-sidebar.html">Blog Left Sidebar</a>
+              </li>
+              <li>
+                <a href="blog-full-width.html">Blog Full Width</a>
+              </li>
+              <li>
+                <a href="blog-details.html">Blog Details</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="contact.html">Contact</a>
+          </li>
+        </ul>
+        <!-- Mobile Menu End -->
+      </nav>
+    </div>
+    <!-- Header Section End -->
+    
+    <!-- Start Page Header -->
+    <div class="page-header">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">            
+            <div class="breadcrumb">
+              <a href="#"><i class="icon-home"></i> Home</a>
+              <span class="crumbs-spacer"><i class="fa fa-angle-double-right"></i></span>
+              <span class="current">FAQ</span>
+              <h2 class="entry-title">FAQ</h2>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- End Page Header -->
+
+    <!-- Start Content -->
+    <div id="content">
+      <div class="container">
+        <div class="head-faq text-center">`
+          <h2>
+            Frequently Asked Questions
+          </h2>
+          <p>Last Updated on October 14, 2017</p>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <!-- accordion start -->
+            <div class="panel-group" id="accordion">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                      <span class="num">1</span>
+                      Do you ship internationally?
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in">
+                  <div class="panel-body">
+                    <p>
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute. non cupidatat skateboard dolor brunch. Foosd truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt alqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim ke ffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lome. Leggings occaecat. craft beer farmto-tab le, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. Nihil anim keffiyeh helvetica, craft beer labore wes ande rso cred nesciunt sapiente ea proident Ad vegan excepteur butcher vice lomo. Leggings occaecat caaft beer farmto-tab le,
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                      <span class="num">2</span>
+                      Who shouldi to contact if i Have any question?
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <p>
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.  
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                      <span class="num">3</span>
+                      How can i cancel or change my order?
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <p>
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute. non cupidatat skateboard dolor brunch. Foosd truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt alqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim ke ffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lome. Leggings occaecat. craft beer farmto-tab le, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. Nihil anim keffiyeh helvetica, craft beer labore wes ande rso cred nesciunt sapiente ea proident Ad vegan excepteur butcher vice lomo. Leggings occaecat caaft beer farmto-tab le,
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFour">
+                      <span class="num">4</span>
+                      How can i Return A Product?
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseFour" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <p>
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute. non cupidatat skateboard dolor brunch. Foosd truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt alqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim ke ffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lome. Leggings occaecat. craft beer farmto-tab le, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. Nihil anim keffiyeh helvetica, craft beer labore wes ande rso cred nesciunt sapiente ea proident Ad vegan excepteur butcher vice lomo. Leggings occaecat caaft beer farmto-tab le,
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseFive">
+                      <span class="num">5</span>
+                      How Long will it take to get my package?
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseFive" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <p>
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute. non cupidatat skateboard dolor brunch. Foosd truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt alqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim ke ffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lome. Leggings occaecat. craft beer farmto-tab le, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. Nihil anim keffiyeh helvetica, craft beer labore wes ande rso cred nesciunt sapiente ea proident Ad vegan excepteur butcher vice lomo. Leggings occaecat caaft beer farmto-tab le,
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseSix">
+                      <span class="num">6</span>
+                      What shipping methods are available?
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseSix" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <p>
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute. non cupidatat skateboard dolor brunch. Foosd truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt alqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim ke ffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lome. Leggings occaecat. craft beer farmto-tab le, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. Nihil anim keffiyeh helvetica, craft beer labore wes ande rso cred nesciunt sapiente ea proident Ad vegan excepteur butcher vice lomo. Leggings occaecat caaft beer farmto-tab le,
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseSeven">
+                      <span class="num">7</span>
+                      Do You Provide any warranty?
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseSeven" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <p>
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute. non cupidatat skateboard dolor brunch. Foosd truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt alqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim ke ffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lome. Leggings occaecat. craft beer farmto-tab le, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. Nihil anim keffiyeh helvetica, craft beer labore wes ande rso cred nesciunt sapiente ea proident Ad vegan excepteur butcher vice lomo. Leggings occaecat caaft beer farmto-tab le,
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseEight">
+                      <span class="num">8</span>
+                      Do You Have replacenment guarantee?
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseEight" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <p>
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute. non cupidatat skateboard dolor brunch. Foosd truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt alqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim ke ffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lome. Leggings occaecat. craft beer farmto-tab le, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. Nihil anim keffiyeh helvetica, craft beer labore wes ande rso cred nesciunt sapiente ea proident Ad vegan excepteur butcher vice lomo. Leggings occaecat caaft beer farmto-tab le,
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseNine">
+                      <span class="num">9</span>
+                      How Can i cancel or change My order?
+                    </a>
+                  </h4>
+                </div>
+                <div id="collapseNine" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <p>
+                      Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute. non cupidatat skateboard dolor brunch. Foosd truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt alqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim ke ffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lome. Leggings occaecat. craft beer farmto-tab le, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS. Nihil anim keffiyeh helvetica, craft beer labore wes ande rso cred nesciunt sapiente ea proident Ad vegan excepteur butcher vice lomo. Leggings occaecat caaft beer farmto-tab le,
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- accordion End -->    
+            <!-- Still Questions Box Start -->
+            <div class="questions-box text-center">
+              <h1>Still Have Questions? Contact Us</h1>
+              <a href="contact.html" class="btn btn-common">Contact</a>
+            </div>
+            <!-- Still Questions Box End -->
+          </div>      
+        </div>
+      </div>      
+    </div>
+    <!-- End Content -->
+
+    <!-- Footer Start -->
+    <footer class="section">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 col-sm-6">
+            <div class="contact-us">
+              <h3 class="widget-title">Contact Us</h3>
+              <ul class="contact-list">
+                <li><i class="icon-home"></i> <span>888 6th 10001 Oakwood Avenue, New York City, NY</span></li>
+                <li><i class="icon-call-out"></i> <span>212-631-5135 <br> 212-631-5105</span></li>
+                <li><i class="icon-envelope"></i> <span>sales@emart.com  support@emart.com</span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <h3 class="widget-title">Useful Links</h3>
+            <ul>
+              <li><a href="login.html">My Account</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="checkout.html">Checkout</a></li>
+              <li><a href="404.html">404 Page</a></li>
+              <li><a href="wishlist.html">Wishlist</a></li>
+              <li><a href="compare.html">Compare</a></li>
+            </ul>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <h3 class="widget-title">Product Tags</h3>
+            <div class="tagcloud">
+              <a href="#" class="tag-link">Accessories</a>    
+              <a href="#" class="tag-link">Bags</a>    
+              <a href="#" class="tag-link">Bestseller</a>    
+              <a href="#" class="tag-link">Handpicked</a>    
+              <a href="#" class="tag-link">Dresses</a>    
+              <a href="#" class="tag-link">Men Fashion</a>    
+              <a href="#" class="tag-link">Sell Off</a>    
+              <a href="#" class="tag-link">Shoes</a>    
+              <a href="#" class="tag-link">Specials</a>    
+              <a href="#" class="tag-link">Tops</a>    
+              <a href="#" class="tag-link">Women Fashion</a>    
+            </div>
+          </div>
+          <div class="col-md-3 col-sm-6">
+            <div class="block-subscribe">
+              <h3 class="widget-title">Newsletter</h3>
+              <p>Quisque a nunc interdum tellus placerat cursus. Quisque facilisis dapibus facilisis! Vivamus dictum lectus ut porta volutpat.</p>
+              <form class="subscribe" >
+                <input type="text" class="form-control" name="email" placeholder="Enter Email">
+                <button type="submit" class="btn btn-common">Subscribe</button>               
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>      
+    </footer>
+    <!-- Footer End -->
+
+    <!-- Copyright Start -->
+    <div id="copyright">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <p>All copyrights reserved &copy; 2017 - Designed & Developed by <a rel="nofollow" href="https://uideck.com">UIdeck</a></p>
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-12">
+            <div class="payment pull-right">
+              <img src="assets/img/payment.png" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Copyright End -->
+
+    <!-- Go To Top Link -->
+    <a href="#" class="back-to-top">
+      <i class="icon-arrow-up"></i>
+    </a>
+        
+    <!-- All js here -->
+    <script type="text/javascript" src="assets/js/jquery-min.js"></script>      
+    <script type="text/javascript" src="assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="assets/js/bootstrap-select.min.js"></script> 
+    <script type="text/javascript" src="assets/js/owl.carousel.min.js"></script>
+    <script type="text/javascript" src="assets/js/ion.rangeSlider.js"></script>
+    <script type="text/javascript" src="assets/js/modalEffects.js"></script>  
+    <script type="text/javascript" src="assets/js/classie.js"></script>     
+    <script type="text/javascript" src="assets/js/nivo-lightbox.js"></script> 
+    <script type="text/javascript" src="assets/js/slick.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery.slicknav.js"></script>
+
+    <script type="text/javascript" src="assets/js/jquery.themepunch.revolution.min.js"></script>
+    <script type="text/javascript" src="assets/js/jquery.themepunch.tools.min.js"></script>
+    <script type="text/javascript" src="assets/js/main.js"></script>   
+    
+  </body>
+</html>

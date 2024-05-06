@@ -1,0 +1,619 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">    
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <meta name="author" content="Ecommerce">
+    <title>{% block title %}  {% endblock title %}</title>
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon.png' %}">
+
+
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">    
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap-select.min.css' %}">   
+    <link rel="stylesheet" href="{% static 'assets/fonts/font-awesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/fonts/line-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">  
+    <link rel="stylesheet" href="{% static 'assets/css/owl.carousel.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/owl.theme.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/component.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/settings.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/slick-theme.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/nivo-lightbox.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/ion.rangeSlider.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/ion.rangeSlider.skinFlat.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/slicknav.css' %}">  
+    <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+    
+  </head>
+
+  <body>  
+    <!-- Header Section Start -->
+    <div class="header">    
+
+      <!-- Start Top Bar -->
+      <div class="top-bar">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-4 col-sm-2">
+              <div class="language-wrapper">
+                <div class="box-language">
+                  <form id="form-language">
+                    <div class="btn-group toggle-wrap">
+                      <span class="toggle">
+                        <span><img src="{% static 'assets/img/language/flag-lang.png' %}" alt="English" title="English" height="11" width="16"> English</span>
+                        <span class="hidden">Language</span>
+                      </span>
+                      <ul style="display: none;" class="toggle_cont pull-right">
+                        <li>
+                        <button class="language-select selected" type="button" name="en-gb">
+                        <img src="{% static 'assets/img/language/en-gb.png' %}" alt="English" title="English" height="11" width="16">
+                        English </button>
+                        </li>
+                        <li>
+                        <button class="language-select" type="button" name="de-DE">
+                        <img src="{% static 'assets/img/language/de-DE.png' %}" alt="Deutsch" title="Deutsch" height="11" width="16">
+                        Deutsch </button>
+                        </li>
+                        <li>
+                        <button class="language-select" type="button" name="ru-ru">
+                        <img src="{% static 'assets/img/language/ru-ru.png' %}" alt="Русский" title="Русский" height="11" width="16">
+                        Русский </button>
+                        </li>
+                      </ul>
+                    </div>
+                  </form>
+                </div>
+                <div class="box-currency">
+                  <form method="post" id="form-currency">
+                    <div class="btn-group toggle-wrap">
+                      <span class="toggle">
+                        $USD                                              
+                      </span>
+                      <ul class="toggle_cont pull-right">
+                        <li>
+                        <button class="currency-select selected" type="button" name="USD">
+                        $ USD </button>
+                        </li>
+                        <li>
+                        <button class="currency-select" type="button" name="EUR">
+                        € EUR
+                        </button>
+                        </li>
+                        <li>
+                        <button class="currency-select" type="button" name="GBP">
+                        £ GBP </button>
+                        </li>
+                      </ul>
+                    </div>
+                  </form>
+                </div>                
+                <a href="#"><i class="icon-phone"></i> Call Us: (123) 456- 789</a>
+              </div>              
+              <div class="clear"></div>              
+            </div>
+            <div class="col-md-8 col-sm-10">              
+              <!-- shopping cart end -->
+              <div class="search-area">
+                <form>
+                  <div class="control-group">
+                    <ul class="categories-filter animate-dropdown">
+                      <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="category.html">Categories <span class="caret"></span></a>
+                        <ul class="dropdown-menu animated fadeIn">
+                          <li class="menu-header">Clothing</li>
+                          <li><a tabindex="-1" href="#">- Men</a></li>
+                          <li><a tabindex="-1" href="#">- Women</a></li>
+                          <li><a tabindex="-1" href="#">- Boys</a></li>
+                          <li><a tabindex="-1" href="#">- Girls</a></li>
+                          <li class="menu-header">Electronics</li>
+                          <li><a tabindex="-1" href="#">- Laptops</a></li>
+                          <li><a tabindex="-1" href="#">- Desktops</a></li>
+                          <li><a tabindex="-1" href="#">- Cameras</a></li>
+                          <li><a tabindex="-1" href="#">- Mobile Phones</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                    <input class="search-field" placeholder="Search here...">
+                    <a class="search-button" href="#"><i class="icon-magnifier"></i></a> 
+                  </div>
+                </form>
+              </div>            
+
+              <div class="shop-cart">
+                <ul>                
+                  <li><a class="cart-icon cart-btn" href="wishlist.html"><span class="icon-heart"></span></a></li>
+                  <li>
+                    <a href="#" class="cart-icon cart-btn"><i class="icon-basket"></i><span class="cart-label">3</span></a>
+                    <div class="cart-box">
+                      <div class="popup-container">
+                        <div class="cart-entry">
+                          <a href="#" class="image">
+                            <img src="{% static 'assets/img/products/product-menu-1.jpg' %}"  alt="">
+                          </a>
+                          <div class="content">
+                            <a href="#" class="title">Pullover Batwing</a>
+                            <p class="quantity">Quantity: 3</p>
+                            <span class="price">$45.00</span>
+                          </div>
+                          <div class="button-x">
+                            <i class="icon-close"></i>
+                          </div>
+                        </div>
+                        <div class="cart-entry">
+                          <a href="#" class="image">
+                            <img src="{% static 'assets/img/products/product-menu-2.jpg' %}"  alt="">
+                          </a>
+                          <div class="content">
+                            <a href="#" class="title">Pullover Batwing</a>
+                            <p class="quantity">Quantity: 3</p>
+                            <span class="price">$90.00</span>
+                          </div>
+                          <div class="button-x">
+                            <i class="icon-close"></i>
+                          </div>
+                        </div>
+                        <div class="summary">
+                          <div class="subtotal">Sub Total</div>
+                          <div class="price-s">$210.5</div>
+                        </div>
+                        <div class="cart-buttons">
+                            <a href="./cart-page.html" class="btn btn-border-2">View Cart</a>
+                            <a href="./checkout.html" class="btn btn-common">Checkout</a>
+                            <div class="clear"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </li>  
+                </ul> 
+              </div>          
+              <div class="account link-inline">
+                <a href="login-form.html"><i class="icon-login"></i><span class="hidden-mobile">login/register</span></a>
+              </div> 
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- End Top Bar -->    
+
+      <!-- Start  Logo & Naviagtion  -->
+      <nav class="navbar navbar-default" data-spy="affix" data-offset-top="50">
+        <div class="container">
+          <div class="row">
+            <div class="navbar-header">
+              <!-- Stat Toggle Nav Link For Mobiles -->
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <i class="fa fa-bars"></i>
+              </button>
+              <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{% static 'assets/img/logo.png' %}" alt="">
+              </a> 
+            </div>
+            <div class="navbar-collapse collapse">
+              <!-- Start Navigation List -->
+              <ul class="nav navbar-nav navbar-right">
+                <li>
+                  <a {% if request.path == '/' %} class="active" {% endif %} href="{% url 'home' %}">Home</a>
+                </li>
+                <li>
+                  <a href="about.html">
+                  About
+                  </a>
+                </li>
+                <li>
+                  <a href="#">Catalog <span class="caret"></span></a>
+                  <div class="dropdown mega-menu megamenu1">
+                    <div class="row">
+                      <div class="col-sm-3 col-xs-12">
+                        <ul class="menulinks">
+                          <li><a href="category.html">Clothing</a></li>
+                          <li><a href="category.html">Handbags</a></li>
+                          <li><a href="category.html">Maternity</a></li>
+                          <li><a href="category.html">Jewelry</a></li>
+                          <li><a href="category.html">Scarves</a></li>
+                        </ul>
+                      </div>
+                    </div>                    
+                  </div>
+                </li>
+                <li>
+                  <a href="#">Pages <span class="caret"></span></a>
+                  <ul class="dropdown">
+                    <li>
+                      <a href="about.html">
+                      About Us
+                      </a>
+                    </li>
+                    <li>
+                      <a href="services.html">
+                      Services
+                      </a>
+                    </li>
+                    <li>
+                      <a href="contact.html">
+                      Contact Us
+                      </a>
+                    </li>                    
+                    <li>
+                      <a href="product-details.html">
+                      Product Details
+                      </a>
+                    </li>
+                    <li>
+                      <a href="team.html">
+                      Team Member
+                      </a>
+                    </li>
+                    <li>
+                      <a href="checkout.html">
+                      Checkout
+                      </a>
+                    </li>
+                    <li>
+                      <a href="compare.html">
+                      Compare
+                      </a>
+                    </li>
+                    <li>
+                      <a href="shopping-cart.html">
+                      Shopping cart
+                      </a>
+                    </li>
+                     <li>
+                      <a href="faq.html">
+                      FAQs
+                      </a>
+                    </li>
+                     <li>
+                      <a href="wishlist.html">
+                      Wishlist
+                      </a>
+                    </li>
+                     <li>
+                      <a href="404.html">
+                      404 Error
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+                <li>
+                  <a href="#">Blogs</a>
+                </li>
+                <li>
+                  <a href="contact.html">
+                  Contact
+                  </a>
+                </li>
+              </ul>
+              <!-- End Navigation List -->               
+            </div>
+          </div>
+        </div>
+        <!-- End Header Logo & Naviagtion -->
+
+        <!-- Mobile Menu Start -->
+        <ul class="mobile-menu">
+          <li>
+            <a class="active" href="index.html">
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="about.html">About</a>
+          </li>
+          <li>
+            <a href="#">Catalog</a>
+            <ul class="dropdown menulinks">
+              <li class="maga-menu-title">
+                <a href="#">Men</a>
+              </li>
+              <li><a href="category.html">Clothing</a></li>
+              <li><a href="category.html">Handbags</a></li>
+              <li><a href="category.html">Maternity</a></li>
+              <li><a href="category.html">Jewelry</a></li>
+              <li><a href="category.html">Scarves</a></li>
+              <li class="maga-menu-title">
+                <a href="#">Women</a>
+              </li>
+              <li><a href="category.html">Handbags</a></li>
+              <li><a href="category.html">Jewelry</a></li>
+              <li><a href="category.html">Clothing</a></li>
+              <li><a href="category.html">Watches</a></li>
+              <li><a href="category.html">Hats</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Shop</a>
+            <ul class="menulinks">
+              <li class="maga-menu-title">
+                <a href="#">Normal Shop Pages</a>
+              </li>
+              <li><a href="category.html">Single Category</a></li>
+              <li><a href="product-details.html">Product Details</a></li>                      
+              <li><a href="shopping-cart.html">Cart Page</a></li>
+              <li><a href="checkout.html">Checkout Page</a></li> 
+              <li><a href="single-shop.html">Seller's Store</a></li>
+              <li><a href="shop-grid.html">Shop Grid Sidebar</a></li>
+              <li><a href="shop-list.html">Shop List Sidebar</a></li>
+              <li><a href="shop-right-sidebar.html">Shop Right Sidebar</a></li>
+              <li><a href="order.html">Order Track</a></li>
+              <li class="maga-menu-title">
+                <a href="#">Multi-vendor Pages</a>
+              </li>  
+              <li><a href="submission.html">Product Submission</a></li>
+              <li><a href="single-shop.html">Seller Store Page</a></li>  
+              <li><a href="edit-profile.html">Seller Account</a></li>
+              <li><a href="login.html">Log In</a></li>
+              <li><a href="shop.html">Search</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Pages</a>
+            <ul class="dropdown">
+              <li>
+                <a href="about.html">About Us</a>
+              </li>
+              <li>
+                <a href="services.html">Services</a>
+              </li>
+              <li>
+                <a href="contact.html">Contact Us</a>
+              </li>                    
+              <li>
+                <a href="product-details.html">Product Details</a>
+              </li>
+              <li>
+                <a href="team.html">Team Member</a>
+              </li>
+              <li>
+                <a href="checkout.html">Checkout</a>
+              </li>
+              <li>
+                <a href="compare.html">Compare</a>
+              </li>
+              <li>
+                <a href="shopping-cart.html">Shopping cart</a>
+              </li>
+               <li>
+                <a href="faq.html">FAQs</a>
+              </li>
+               <li>
+                <a href="wishlist.html">Wishlist</a>
+              </li>
+               <li>
+                <a href="404.html">404 Error</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Blog</a>
+            <ul class="dropdown">                    
+              <li>
+                <a href="blog.html">Blog Right Sidebar</a>
+              </li>
+              <li>
+                <a href="blog-left-sidebar.html">Blog Left Sidebar</a>
+              </li>
+              <li>
+                <a href="blog-full-width.html">Blog Full Width</a>
+              </li>
+              <li>
+                <a href="blog-details.html">Blog Details</a>
+              </li>
+            </ul>
+          </li>
+          <li>
+            <a href="contact.html">Contact</a>
+          </li>
+        </ul>
+        <!-- Mobile Menu End -->
+      </nav>
+    </div>
+
+
+    {% block main %} {% endblock main %}
+
+
+        <!-- Footer Start -->
+        <footer class="section">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-3 col-sm-6">
+                  <div class="contact-us">
+                    <h3 class="widget-title">Contact Us</h3>
+                    <ul class="contact-list">
+                      <li><i class="icon-home"></i> <span>888 6th 10001 Oakwood Avenue, New York City, NY</span></li>
+                      <li><i class="icon-call-out"></i> <span>212-631-5135 <br> 212-631-5105</span></li>
+                      <li><i class="icon-envelope"></i> <span>sales@emart.com  support@emart.com</span></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                  <h3 class="widget-title">Useful Links</h3>
+                  <ul>
+                    <li><a href="login.html">My Account</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="checkout.html">Checkout</a></li>
+                    <li><a href="404.html">404 Page</a></li>
+                    <li><a href="wishlist.html">Wishlist</a></li>
+                    <li><a href="compare.html">Compare</a></li>
+                  </ul>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                  <h3 class="widget-title">Product Tags</h3>
+                  <div class="tagcloud">
+                    <a href="#" class="tag-link">Accessories</a>    
+                    <a href="#" class="tag-link">Bags</a>    
+                    <a href="#" class="tag-link">Bestseller</a>    
+                    <a href="#" class="tag-link">Handpicked</a>    
+                    <a href="#" class="tag-link">Dresses</a>    
+                    <a href="#" class="tag-link">Men Fashion</a>    
+                    <a href="#" class="tag-link">Sell Off</a>    
+                    <a href="#" class="tag-link">Shoes</a>    
+                    <a href="#" class="tag-link">Specials</a>    
+                    <a href="#" class="tag-link">Tops</a>    
+                    <a href="#" class="tag-link">Women Fashion</a>    
+                  </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                  <div class="block-subscribe">
+                    <h3 class="widget-title">Newsletter</h3>
+                    <p>Quisque a nunc interdum tellus placerat cursus. Quisque facilisis dapibus facilisis! Vivamus dictum lectus ut porta volutpat.</p>
+                    <form class="subscribe" >
+                      <input type="text" class="form-control" name="email" placeholder="Enter Email">
+                      <button type="submit" class="btn btn-common">Subscribe</button>               
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>      
+          </footer>
+          <!-- Footer End -->
+      
+          <!-- Copyright Start -->
+          <div id="copyright">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <p>All copyrights reserved &copy; 2017 - Designed & Developed by <a rel="nofollow" href="https://tanvirkabir47.netlify.app/">Tanvir</a></p>
+                </div>
+                <div class="col-md-6 col-sm-6 col-xs-12">
+                  <div class="payment pull-right">
+                    <img src="{% static 'assets/img/payment.png' %}" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Copyright End -->
+      
+          <!-- Go To Top Link -->
+          <a href="#" class="back-to-top">
+            <i class="icon-arrow-up"></i>
+          </a>
+      
+          <!-- All modals added here for the demo -->
+          <div class="md-modal md-effect-3" id="modal-3">
+            <div class="md-content">
+                <!-- Product Info Start -->
+                <div class="product-info row">
+                  <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="product-details-image">
+                      <div class="slider-for slider">
+                        <div>
+                          <img src="assets/img/single-product/img1.jpg" alt="">
+                        </div>
+                        <div>
+                          <img src="assets/img/single-product/img2.jpg" alt="">
+                        </div>
+                        <div>
+                          <img src="assets/img/single-product/img3.jpg" alt="">
+                        </div>
+                        <div>
+                          <img src="assets/img/single-product/img4.jpg" alt="">
+                        </div>
+                        <div>
+                          <img src="assets/img/single-product/img5.jpg" alt="">
+                        </div>
+                        <div>
+                          <img src="assets/img/single-product/img3.jpg" alt="">
+                        </div>
+                      </div>
+                      <ul id="productthumbnail" class="slider slider-nav">
+                        <li>
+                          <img src="assets/img/single-product/small/img1.jpg" alt="">
+                        </li>
+                        <li>
+                          <img src="assets/img/single-product/small/img2.jpg" alt="">
+                        </li>
+                        <li>
+                          <img src="assets/img/single-product/small/img3.jpg" alt="">
+                        </li>
+                        <li>
+                          <img src="assets/img/single-product/small/img4.jpg" alt="">
+                        </li>
+                        <li>
+                          <img src="assets/img/single-product/small/img5.jpg" alt="">
+                        </li>
+                        <li>
+                          <img src="assets/img/single-product/small/img3.jpg" alt="">
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="col-md-8 col-sm-6 col-xs-12">
+                    <div class="info-panel">
+                      <h1 class="product-title">Proin Lectus Ipsum</h1>
+                      <!-- Rattion Price -->
+                      <div class="price-ratting">
+                        <div class="price float-left">
+                          $ 18.00
+                        </div>
+                      </div>
+                      <!-- Short Description -->
+                      <div class="short-desc">
+                        <h5 class="sub-title">Quick Overview</h5>
+                        <p>There are many variations of passages of Lorem Ipsum avaable, b majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable.</p>
+                      </div>  
+                      <!-- Product Size -->            
+                      <div class="product-size">
+                        <h5 class="sub-title">Select Size</h5>
+                        <span>S</span>
+                        <span class="active">M</span>
+                        <span>L</span>
+                        <span>XL</span>
+                      </div>
+                      <!-- Quantity Cart -->
+                      <div class="quantity-cart">
+                        <button class="btn btn-common"><i class="icon-basket"></i> add to cart</button>
+                      </div>
+                      <!-- Share -->
+                      <div class="share-icons pull-right">
+                        <span>share :</span>
+                        <a href="#"><i class="fa fa-facebook"></i></a>
+                        <a href="#"><i class="fa fa-twitter"></i></a>
+                        <a href="#"><i class="fa fa-instagram"></i></a>
+                        <a href="#"><i class="fa fa-pinterest"></i></a>
+                      </div>
+                    </div>
+                  </div>      
+                </div>
+                <!-- Product Info End -->
+                <button class="md-close"><i class="icon-close"></i></button>
+            </div>
+          </div>
+          <div class="md-overlay"></div>
+          <!-- the overlay element -->
+      
+          <!-- Start Loader -->
+          <div id="loader">
+            <div class="sk-folding-cube">
+              <div class="sk-cube1 sk-cube"></div>
+              <div class="sk-cube2 sk-cube"></div>
+              <div class="sk-cube4 sk-cube"></div>
+              <div class="sk-cube3 sk-cube"></div>
+            </div>
+          </div>  
+              
+          <!-- All js here -->
+          <script type="text/javascript" src="{% static 'assets/js/jquery-min.js' %}"></script>      
+          <script type="text/javascript" src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+          <script type="text/javascript" src="{% static 'assets/js/bootstrap-select.min.js' %}"></script> 
+          <script type="text/javascript" src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+          <script type="text/javascript" src="{% static 'assets/js/ion.rangeSlider.js' %}"></script>
+          <script type="text/javascript" src="{% static 'assets/js/modalEffects.js' %}"></script>   
+          <script type="text/javascript" src="{% static 'assets/js/classie.js' %}"></script>    
+          <script type="text/javascript" src="{% static 'assets/js/nivo-lightbox.js' %}"></script>
+          <script type="text/javascript" src="{% static 'assets/js/slick.min.js' %}"></script>
+          <script type="text/javascript" src="{% static 'assets/js/jquery.slicknav.js' %}"></script>
+      
+          <script type="text/javascript" src="{% static 'assets/js/jquery.themepunch.revolution.min.js' %}"></script>
+          <script type="text/javascript" src="{% static 'assets/js/jquery.themepunch.tools.min.js' %}"></script>
+          <script type="text/javascript" src="{% static 'assets/js/main.js' %}"></script>       
+          
+        </body>
+      </html>
