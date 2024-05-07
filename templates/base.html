@@ -282,9 +282,7 @@
                   <a href="#">Blogs</a>
                 </li>
                 <li>
-                  <a href="contact.html">
-                  Contact
-                  </a>
+                  <a {% if request.path == '/contact/' %} class="active" {% endif %} href="{% url 'contact' %}">Contact</a>
                 </li>
               </ul>
               <!-- End Navigation List -->               
