@@ -3793,7 +3793,10 @@ textarea:focus {
   transition: all 0.2s ease 0s;
 }
 .button-box .log-btn {
-  margin-top: 20px;
+  width: 100%;
+  margin: 20px auto;
+  text-align: center;
+  display: block;
 }
 .bootstrap-select.btn-group .dropdown-toggle .caret {
   position: relative;
