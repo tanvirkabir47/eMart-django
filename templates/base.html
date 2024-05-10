@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="{% static 'assets/css/ion.rangeSlider.skinFlat.css' %}">
     <link rel="stylesheet" href="{% static 'assets/css/slicknav.css' %}">  
     <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     
   </head>
 
@@ -170,10 +171,24 @@
                     </div>
                   </li>  
                 </ul> 
-              </div>          
-              <div class="account link-inline">
-                <a href="{% url 'login' %}"><i class="icon-login"></i><span class="hidden-mobile">login/register</span></a>
-              </div> 
+              </div>
+              
+              {% if user.is_authenticated %}
+                  <div class="header-account-sec">
+                    <img src="{{request.user.image.url}}"  alt="" id="user-header-btn">
+                  
+                    <ul class="user-header-open-div dis-none" id="user-header-open-div">
+                      <li><a class="" href="">My Profile</a></li>
+                      <li><a class="" href="{% url 'logout' %}">Logout</a></li>
+                    </ul>
+                  </div>
+                {% else %}
+                  <div class="account link-inline">
+                    <a href="{% url 'login' %}"><i class="icon-login"></i><span class="hidden-mobile">login/register</span></a>
+                  </div>
+              {% endif %}
+              
+               
             </div>
           </div>
         </div>
@@ -609,7 +624,40 @@
       
           <script type="text/javascript" src="{% static 'assets/js/jquery.themepunch.revolution.min.js' %}"></script>
           <script type="text/javascript" src="{% static 'assets/js/jquery.themepunch.tools.min.js' %}"></script>
-          <script type="text/javascript" src="{% static 'assets/js/main.js' %}"></script>       
+          <script type="text/javascript" src="{% static 'assets/js/main.js' %}"></script> 
+          <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>      
+
+          <script>
+
+
+            {% if messages %}
+                {% for message in messages %}
+                Toastify({
+                    text: "{{ message }}",
+                    className: "info",
+                    close: true,
+                    style: {
+                      background: "linear-gradient(to right, #002c3e, #96c93d)",
+                    }
+                  }).showToast();
+                {% endfor %}
+            {% endif %}
+          </script>
+
+          <script>
+            const profileOpenBtn = document.getElementById('user-header-btn');
+            const profileOpenDiv = document.getElementById('user-header-open-div');
+
+            profileOpenBtn.addEventListener('click', () =>{
+              profileOpenDiv.classList.toggle('dis-none');
+            });
+
+            document.addEventListener('click', (event) => {
+              if (!profileOpenDiv.contains(event.target) && event.target !== profileOpenBtn) {
+                profileOpenDiv.classList.add('dis-none');
+              }
+            });
+          </script>
           
         </body>
       </html>
