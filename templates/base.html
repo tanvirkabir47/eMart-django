@@ -30,6 +30,51 @@
     <link rel="stylesheet" href="{% static 'assets/css/slicknav.css' %}">  
     <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    <style>
+      #loader-wrapper {
+          position: fixed;
+          width: 100%;
+          height: 100%;
+          background: #fff;
+          z-index: 1000;
+      }
+
+      #loader {
+          border: 16px solid #f3f3f3;
+          border-radius: 50%;
+          border-top: 16px solid #3498db;
+          width: 120px;
+          height: 120px;
+          animation: spin 2s linear infinite;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          margin: -60px 0 0 -60px;
+      }
+
+      .loader-section {
+          position: fixed;
+          top: 0;
+          width: 51%;
+          height: 100%;
+          background: #fff;
+          z-index: 1000;
+      }
+
+      .section-left {
+          left: 0;
+      }
+
+      .section-right {
+          right: 0;
+      }
+
+      @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+      }
+    </style>
     
   </head>
 
@@ -600,15 +645,12 @@
           <div class="md-overlay"></div>
           <!-- the overlay element -->
       
-          <!-- Start Loader -->
-          <div id="loader">
-            <div class="sk-folding-cube">
-              <div class="sk-cube1 sk-cube"></div>
-              <div class="sk-cube2 sk-cube"></div>
-              <div class="sk-cube4 sk-cube"></div>
-              <div class="sk-cube3 sk-cube"></div>
-            </div>
-          </div>  
+        
+          <div id="loader-wrapper">
+            <div id="loader"></div>
+            <div class="loader-section section-left"></div>
+            <div class="loader-section section-right"></div>
+          </div>
               
           <!-- All js here -->
           <script type="text/javascript" src="{% static 'assets/js/jquery-min.js' %}"></script>      
@@ -658,6 +700,18 @@
               }
             });
           </script>
+
+          <script>
+            window.addEventListener("load", function () {
+                const loader = document.getElementById("loader-wrapper");
+                loader.style.display = "none";
+            });
+          </script>
+
+
+          {% block script %}
+            
+          {% endblock script %}
           
         </body>
       </html>

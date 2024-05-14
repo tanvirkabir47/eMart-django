@@ -3890,3 +3890,14 @@ fieldset[disabled] .btn {
 .dis-none{
   display: none;
 }
+
+.error-alart{
+  background: #f8d7da;
+  margin-bottom: 15px;
+  padding: 10px 15px;
+  border: 1px solid #f5c2c7;
+}
+.error-alart h3{
+  color: #842029;
+  font-size: 16px;
+}
