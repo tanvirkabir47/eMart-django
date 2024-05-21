@@ -22,7 +22,7 @@ class Product(models.Model):
     quick_overview = models.TextField()
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    stock = models.FloatField()
+    stock = models.IntegerField()
     category = models.ForeignKey(Category, related_name='product', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     

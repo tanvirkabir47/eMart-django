@@ -2442,6 +2442,8 @@ checkbox .checkbox-material {
 }
 .shop-product .product-box img {
   width: 100%;
+  height: 300px;
+  object-fit: cover;
 }
 .shop-product .product-box .cart-overlay {
   position: absolute;
@@ -2479,7 +2481,7 @@ checkbox .checkbox-material {
   background: #002c3e;
 }
 .shop-product .product-info {
-  padding: 21px 15px 40px;
+  padding: 20px 15px;
 }
 .shop-product .product-info .pc-title {
   font-size: 14px;

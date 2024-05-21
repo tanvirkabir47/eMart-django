@@ -16,7 +16,7 @@
               <img src="{% static 'assets/img/dummy.png' %}"  alt="laptopmockup_sliderdy" data-lazyload="{% static 'assets/img/slider/slide1.jpg' %}" data-bgposition="top" data-duration="12000" data-ease="Power0.easeInOut" data-bgfit="115" data-bgfitend="100" data-bgpositionend="right">
               <!-- LAYERS 1-->
               <div class="tp-caption sft skewtotop tp-resizeme title start" data-x="20" data-y="center" data-voffset="-90" data-speed="800" data-start="950" data-easing="Power4.easeOut" data-splitin="none" data-splitout="none" data-elementdelay="0.01" data-endelementdelay="0.1" data-endspeed="1000" data-endeasing="Power4.easeIn" style="z-index: 11;">
-                <h3 style="text-align: center; min-height: 0px; min-width: 0px; line-height: 94px; border-width: 0px; margin: 0px 0px 20px; padding: 0px; letter-spacing: 2px; font-size: 20px; text-transform: uppercase; font-weight: 700; color: #333;">Upto 70% Discount on Women's Clothing </h3>
+                <h3 style="text-align: center; min-height: 0px; min-width: 0px; line-height: 94px; border-width: 0px; margin: 0px 0px 20px; padding: 0px; letter-spacing: 2px; font-size: 20px; text-transform: uppercase; font-weight: 700; color: #333;">Upto 70% Discount on Electronics </h3>
               </div>
               <!-- LAYERS 2 -->
               <div class="tp-caption largeHeadingWhite sfl str tp-resizeme start"
@@ -85,7 +85,7 @@
                 data-speed="1200" data-start="1350" data-easing="easeInOutExpo" data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300"><p style="min-height: 0px; min-width: 0px; line-height: 30px; border-width: 0px; margin: 0px 0px 20px; padding: 0px; letter-spacing: 0px; font-size: 14px; color: #333; text-align: right;">Lorem consectetur adipiscing elit, sed do eiusmod tempor dolor sit amet <br> contetur adipiscing elit, sed do eiusmod tempor incididunt</p>                
               </div>
               <!-- LAYERS 4 -->
-              <div class="tp-caption sfb tp-resizeme start" data-x="right" data-hoffset="0" data-y="center" data-voffset="90" data-speed="1200" data-start="1750" data-easing="easeInOutExpo" data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300"><a class="btn btn-common" href="#"><i class="icon-clock" style="font-size: 14px"></i>View Deals</a>
+              <div class="tp-caption sfb tp-resizeme start" data-x="right" data-hoffset="0" data-y="center" data-voffset="90" data-speed="1200" data-start="1750" data-easing="easeInOutExpo" data-splitin="none" data-splitout="none" data-elementdelay="0.1" data-endelementdelay="0.1" data-endspeed="300"><a class="btn btn-common" href="{% url 'products' %}"><i class="icon-clock" style="font-size: 14px"></i>View Deals</a>
               </div>           
             </li>
           </ul>
@@ -162,20 +162,19 @@
                     <a href="#"><img src="{{product.image.url}}"  alt=""></a>
                     <div class="cart-overlay">
                     </div>
-                    <span class="sticker new"><strong>NEW</strong></span>
                     <div class="actions">
                       <div class="add-to-links">                     
                         <a href="#" class="btn-cart"><i class="icon-basket"></i></a>
                         <a href="#" class="btn-wish"><i class="icon-heart"></i></a>
-                        <a class="btn-quickview md-trigger" data-modal="modal-3"><i class="icon-eye"></i></a>
+                        <a class="btn-quickview md-trigger" data-modal="modal-{{product.id}}"><i class="icon-eye"></i></a>
                       </div>
                     </div>
                   </div>
                   <div class="product-info">
                     <h4 class="product-title"><a href="{% url 'single-product' product.slug %}">{{product.name}}</a></h4>  
                     <div class="align-items">
-                      <div class="pull-left">
-                        <span class="price">${{product.price}}</span>
+                      <div class="">
+                        <span class="price">Price: ${{product.price}} <del>$79.00</del></span>
                       </div>
                       <div class="pull-right">
                         <div class="reviews-icon">
@@ -185,6 +184,11 @@
                           <i class="fa fa-star-o"></i>
                           <i class="fa fa-star-o"></i>
                         </div>
+                      </div>
+                    </div> 
+                    <div class="align-items">
+                      <div class="">
+                        <span class="price">Stock: {{product.stock}}</span>
                       </div>
                     </div> 
                   </div>
@@ -228,7 +232,6 @@
                     <a href="#"><img src="{% static 'assets/img/feature-products/img-01.jpg' %}"  alt=""></a>
                     <div class="cart-overlay">
                     </div>
-                     <span class="sticker new"><strong>NEW</strong></span>
                     <div class="actions">
                       <div class="add-to-links">
                         <a href="#" class="btn-cart"><i class="icon-basket"></i></a>
@@ -820,7 +823,55 @@
         </div>
       </div>
     </div>
-    
-    
+
+    {% for product in products %}
+      
+        <div class="md-modal md-effect-3" id="modal-{{product.id}}">
+          <div class="md-content">
+              <!-- Product Info Start -->
+              <div class="product-info row">
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                  <div class="product-details-image">
+                    <div class="slider-for slider">
+                      <div>
+                        <img src="{{product.image.url}}" alt="">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-8 col-sm-6 col-xs-12">
+                  <div class="info-panel">
+                    <h1 class="product-title">{{product.name}}</h1>
+                    <!-- Rattion Price -->
+                    <div class="price-ratting">
+                      <div class="price float-left">
+                        $ {{product.price}}
+                      </div>
+                    </div>
+                    <!-- Short Description -->
+                    <div class="short-desc">
+                      <h5 class="sub-title">Quick Overview</h5>
+                      <p>{{product.quick_overview}}</p>
+                    </div> 
+                    <!-- Quantity Cart -->
+                    <div class="quantity-cart">
+                      <button class="btn btn-common"><i class="icon-basket"></i> add to cart</button>
+                    </div>
+                    <!-- Share -->
+                    <div class="share-icons pull-right">
+                      <span>share :</span>
+                      <a href="#"><i class="fa fa-facebook"></i></a>
+                      <a href="#"><i class="fa fa-twitter"></i></a>
+                      <a href="#"><i class="fa fa-instagram"></i></a>
+                      <a href="#"><i class="fa fa-pinterest"></i></a>
+                    </div>
+                  </div>
+                </div>      
+              </div>
+              <!-- Product Info End -->
+              <button class="md-close"><i class="icon-close"></i></button>
+          </div>
+        </div>
+    {% endfor %}
     
 {% endblock main %}
