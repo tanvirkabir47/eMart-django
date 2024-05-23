@@ -2907,13 +2907,23 @@ button:hover {
 }
 .product-comments li {
   float: left;
+  width: 100%;
+  background: #f6f6f6;
+  padding: 20px 10px;
+  border: 1px solid #ddd;
 }
 .pro-reviewer {
   float: left;
-  width: 90px;
+}
+.pro-reviewer img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid #002c3e;
+  object-fit: cover;
 }
 .pro-reviewer-comment {
-  margin-left: 90px;
+  margin-left: 50px;
   padding-left: 30px;
 }
 .comment-reply a {
@@ -2940,6 +2950,9 @@ button:hover {
 }
 .threaded-comments {
   padding-left: 20px;
+}
+.your-rating {
+  margin-bottom: 70px;
 }
 .your-rating span a {
   color: #434343;
@@ -3902,4 +3915,42 @@ fieldset[disabled] .btn {
 .error-alart h3{
   color: #842029;
   font-size: 16px;
+}
+
+
+
+.rating {
+  border: none;
+  float: left;
+}
+
+.rating > label {
+  color: #90A0A3;
+  float: right;
+  cursor: pointer;
+}
+
+.rating > label:before {
+  margin: 5px;
+  font-size: 2em;
+  font-family: FontAwesome;
+  content: "\f005";
+  display: inline-block;
+}
+
+.rating > input {
+  display: none;
+}
+
+.rating > input:checked ~ label,
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  color: #F79426;
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked ~ label:hover,
+.rating > label:hover ~ input:checked ~ label,
+.rating > input:checked ~ label:hover ~ label {
+  color: #FECE31;
 }

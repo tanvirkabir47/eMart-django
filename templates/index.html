@@ -163,9 +163,13 @@
                     <div class="cart-overlay">
                     </div>
                     <div class="actions">
-                      <div class="add-to-links">                     
-                        <a href="#" class="btn-cart"><i class="icon-basket"></i></a>
-                        <a href="#" class="btn-wish"><i class="icon-heart"></i></a>
+                      <div class="add-to-links"> 
+
+                        {% if product.stock > 0 %}
+                          <a href="#" class="btn-cart"><i class="icon-basket"></i></a>
+                          <a href="#" class="btn-wish"><i class="icon-heart"></i></a>
+                        {% endif %}                 
+
                         <a class="btn-quickview md-trigger" data-modal="modal-{{product.id}}"><i class="icon-eye"></i></a>
                       </div>
                     </div>
@@ -178,19 +182,27 @@
                       </div>
                       <div class="pull-right">
                         <div class="reviews-icon">
-                          <i class="i-color fa fa-star"></i>
-                          <i class="i-color fa fa-star"></i>
-                          <i class="i-color fa fa-star"></i>
-                          <i class="fa fa-star-o"></i>
-                          <i class="fa fa-star-o"></i>
+                          <i class="i-color fa fa-star{% if product.average_rating < 1.0 %}-o {% else %}{% endif %}"></i>
+                          <i class="i-color fa fa-star{% if product.average_rating < 2.0 %}-o {% else %}{% endif %}"></i>
+                          <i class="i-color fa fa-star{% if product.average_rating < 3.0 %}-o {% else %}{% endif %}"></i>
+                          <i class="i-color fa fa-star{% if product.average_rating < 4.0 %}-o {% else %}{% endif %}"></i>
+                          <i class="i-color fa fa-star{% if product.average_rating < 5.0 %}-o {% else %}{% endif %}"></i>
                         </div>
                       </div>
                     </div> 
+                    {% if product.stock > 0 %}
                     <div class="align-items">
                       <div class="">
                         <span class="price">Stock: {{product.stock}}</span>
                       </div>
                     </div> 
+                    {% else %}
+                    <div class="align-items">
+                      <div class="">
+                        <span class="price">Stock out</span>
+                      </div>
+                    </div> 
+                    {% endif %}
                   </div>
                 </div>             
               </div>
@@ -226,240 +238,56 @@
         <div class="row">
           <div class="col-md-12">
             <div id="new-products" class="owl-carousel">
-              <div class="item">
-                <div class="shop-product">
-                  <div class="product-box">
-                    <a href="#"><img src="{% static 'assets/img/feature-products/img-01.jpg' %}"  alt=""></a>
-                    <div class="cart-overlay">
-                    </div>
-                    <div class="actions">
-                      <div class="add-to-links">
-                        <a href="#" class="btn-cart"><i class="icon-basket"></i></a>
-                        <a href="#" class="btn-wish"><i class="icon-heart"></i></a>
-                        <a  class="btn-quickview md-trigger" data-modal="modal-3"><i class="icon-eye"></i></a>
-                      </div>
-                    </div>             
-                  </div>
-                  <div class="product-info">
-                    <h4 class="product-title"><a href="product-details.html">Nisi Ut Aliqu</a></h4>  
-                    <div class="align-items">
-                      <div class="pull-left">
-                        <span class="price">$49.00</span>
-                      </div>
-                      <div class="pull-right">
-                        <div class="reviews-icon">
-                          <i class="i-color fa fa-star"></i>
-                          <i class="i-color fa fa-star"></i>
-                          <i class="i-color fa fa-star"></i>
-                          <i class="fa fa-star-o"></i>
-                          <i class="fa fa-star-o"></i>
+              {% for product in feature_products %}
+                  <div class="item">
+                    <div class="shop-product">
+                      <div class="product-box">
+                        <a href="#"><img src="{{product.image.url}}"  alt=""></a>
+                        <div class="cart-overlay">
                         </div>
+                        <div class="actions">
+                          <div class="add-to-links">
+                            {% if product.stock > 0 %}
+                              <a href="#" class="btn-cart"><i class="icon-basket"></i></a>
+                              <a href="#" class="btn-wish"><i class="icon-heart"></i></a>
+                            {% endif %} 
+                            <a  class="btn-quickview md-trigger" data-modal="modal-{{product.id}}"><i class="icon-eye"></i></a>
+                          </div>
+                        </div>             
+                      </div>
+                      <div class="product-info">
+                        <h4 class="product-title"><a href="{% url 'single-product' product.slug %}">{{product.name}}</a></h4>  
+                        <div class="align-items">
+                          <div class="">
+                            <span class="price">Price: ${{product.price}} <del>$79.00</del></span>
+                          </div>
+                          <div class="pull-right">
+                            <div class="reviews-icon">
+                              <i class="i-color fa fa-star{% if product.average_rating < 1.0 %}-o {% else %}{% endif %}"></i>
+                              <i class="i-color fa fa-star{% if product.average_rating < 2.0 %}-o {% else %}{% endif %}"></i>
+                              <i class="i-color fa fa-star{% if product.average_rating < 3.0 %}-o {% else %}{% endif %}"></i>
+                              <i class="i-color fa fa-star{% if product.average_rating < 4.0 %}-o {% else %}{% endif %}"></i>
+                              <i class="i-color fa fa-star{% if product.average_rating < 5.0 %}-o {% else %}{% endif %}"></i>
+                            </div>
+                          </div>
+                        </div> 
+                        {% if product.stock > 0 %}
+                        <div class="align-items">
+                          <div class="">
+                            <span class="price">Stock: {{product.stock}}</span>
+                          </div>
+                        </div> 
+                        {% else %}
+                        <div class="align-items">
+                          <div class="">
+                            <span class="price">Stock out</span>
+                          </div>
+                        </div> 
+                        {% endif %}
                       </div>
                     </div> 
                   </div>
-                </div> 
-              </div>
-              <div class="item">
-                <div class="shop-product">
-                  <div class="product-box">
-                    <a href="#"><img src="{% static 'assets/img/feature-products/img-02.jpg' %}"  alt=""></a>
-                    <div class="cart-overlay">
-                    </div>                   
-                    <div class="actions">
-                      <div class="add-to-links">
-                        <a href="#" class="btn-cart"><i class="icon-basket"></i></a>
-                        <a href="#" class="btn-wish"><i class="icon-heart"></i></a>
-                        <a  class="btn-quickview md-trigger" data-modal="modal-3"><i class="icon-eye"></i></a>
-                      </div>
-                    </div>             
-                  </div>
-                  <div class="product-info">
-                    <h4 class="product-title"><a href="product-details.html">Eius Modi Tempo</a></h4>  
-                    <div class="align-items">
-                      <div class="pull-left">
-                        <span class="price">$59.00 <del>$79.00</del></span>
-                      </div>
-                      <div class="pull-right">
-                        <div class="reviews-icon">
-                          <i class="i-color fa fa-star"></i>
-                          <i class="i-color fa fa-star"></i>
-                          <i class="i-color fa fa-star"></i>
-                          <i class="i-color fa fa-star"></i>
-                          <i class="fa fa-star-o"></i>
-                        </div>
-                      </div>
-                    </div> 
-                  </div>
-                </div> 
-              </div>
-              <div class="item">
-                <div class="shop-product">
-                  <div class="product-box">
-                    <a href="#"><img src="{% static 'assets/img/feature-products/img-03.jpg' %}"  alt=""></a>
-                    <div class="cart-overlay">
-                    </div>                    
-                    <span class="sticker sale"><strong>Sale</strong></span>
-                    <div class="actions">
-                  <div class="add-to-links">
-                    <a href="#" class="btn-cart"><i class="icon-basket"></i></a>
-                    <a href="#" class="btn-wish"><i class="icon-heart"></i></a>
-                    <a  class="btn-quickview md-trigger" data-modal="modal-3"><i class="icon-eye"></i></a>
-                  </div>
-                </div>             
-                  </div>
-                  <div class="product-info">
-                    <h4 class="product-title"><a href="product-details.html">Quia Voluptas Sit</a></h4>  
-                    <div class="align-items">
-                      <div class="pull-left">
-                        <span class="price">$68.00</span>
-                      </div>
-                      <div class="pull-right">
-                        <div class="reviews-icon">
-                          <i class="i-color fa fa-star"></i>
-                          <i class="i-color fa fa-star"></i>
-                          <i class="i-color fa fa-star"></i>
-                          <i class="fa fa-star-o"></i>
-                          <i class="fa fa-star-o"></i>
-                        </div>
-                      </div>
-                    </div> 
-                  </div>
-                </div> 
-              </div>
-              <div class="item">
-                <div class="shop-product">
-                  <div class="product-box">
-                    <a href="#"><img src="{% static 'assets/img/feature-products/img-04.jpg' %}"  alt=""></a>
-                    <div class="cart-overlay">
-                    </div>
-                    <div class="actions">
-                      <div class="add-to-links">
-                        <a href="#" class="btn-cart"><i class="icon-basket"></i></a>
-                        <a href="#" class="btn-wish"><i class="icon-heart"></i></a>
-                        <a  class="btn-quickview md-trigger" data-modal="modal-3"><i class="icon-eye"></i></a>
-                      </div>
-                    </div>             
-                  </div>
-                  <div class="product-info">
-                    <h4 class="product-title"><a href="product-details.html">An Tium Lores Eos</a></h4>  
-                    <div class="align-items">
-                      <div class="pull-left">
-                        <span class="price">$59.00 <del>$69.00</del></span>
-                      </div>
-                      <div class="pull-right">
-                        <div class="reviews-icon">
-                          <i class="i-color fa fa-star"></i>
-                          <i class="i-color fa fa-star"></i>
-                          <i class="fa fa-star-o"></i>
-                          <i class="fa fa-star-o"></i>
-                          <i class="fa fa-star-o"></i>
-                        </div>
-                      </div>
-                    </div> 
-                  </div>
-                </div> 
-              </div>
-              <div class="item">
-                <div class="shop-product">
-                  <div class="product-box">
-                    <a href="#"><img src="{% static 'assets/img/feature-products/img-05.jpg' %}"  alt=""></a>
-                    <div class="cart-overlay">
-                    </div>
-                    <span class="sticker discount"><strong>-40%</strong></span>
-                    <div class="actions">
-                      <div class="add-to-links">
-                        <a href="#" class="btn-cart"><i class="icon-basket"></i></a>
-                        <a href="#" class="btn-wish"><i class="icon-heart"></i></a>
-                        <a  class="btn-quickview md-trigger" data-modal="modal-3"><i class="icon-eye"></i></a>
-                      </div>
-                    </div>             
-                  </div>
-                  <div class="product-info">
-                    <h4 class="product-title"><a href="product-details.html">Magni Dolores Eos</a></h4>  
-                    <div class="align-items">
-                      <div class="pull-left">
-                        <span class="price">$79.00</span>
-                      </div>
-                      <div class="pull-right">
-                        <div class="reviews-icon">
-                          <i class="i-color fa fa-star"></i>
-                          <i class="i-color fa fa-star"></i>
-                          <i class="i-color fa fa-star"></i>
-                          <i class="fa fa-star-o"></i>
-                          <i class="fa fa-star-o"></i>
-                        </div>
-                      </div>
-                    </div> 
-                  </div>
-                </div> 
-              </div>
-              <div class="item">
-                <div class="shop-product">
-                  <div class="product-box">
-                    <a href="#"><img src="{% static 'assets/img/feature-products/img-06.jpg' %}"  alt=""></a>
-                    <div class="cart-overlay">
-                    </div>
-                    <div class="actions">
-                      <div class="add-to-links">
-                        <a href="#" class="btn-cart"><i class="icon-basket"></i></a>
-                        <a href="#" class="btn-wish"><i class="icon-heart"></i></a>
-                        <a  class="btn-quickview md-trigger" data-modal="modal-3"><i class="icon-eye"></i></a>
-                      </div>
-                    </div>             
-                  </div>
-                  <div class="product-info">
-                    <h4 class="product-title"><a href="product-details.html">Natur Aut Odit Aut</a></h4>  
-                    <div class="align-items">
-                      <div class="pull-left">
-                        <span class="price">$69.00</span>
-                      </div>
-                      <div class="pull-right">
-                        <div class="reviews-icon">
-                          <i class="i-color fa fa-star"></i>
-                          <i class="i-color fa fa-star"></i>
-                          <i class="i-color fa fa-star"></i>
-                          <i class="i-color fa fa-star"></i>
-                          <i class="fa fa-star-o"></i>
-                        </div>
-                      </div>
-                    </div> 
-                  </div>
-                </div>  
-              </div>
-              <div class="item">
-                <div class="shop-product">
-                  <div class="product-box">
-                    <a href="#"><img src="{% static 'assets/img/feature-products/img-07.jpg' %}"  alt=""></a>
-                    <div class="cart-overlay">
-                    </div>
-                    <span class="sticker sale"><strong>Sale</strong></span>
-                    <div class="actions">
-                      <div class="add-to-links">
-                        <a href="#" class="btn-cart"><i class="icon-basket"></i></a>
-                        <a href="#" class="btn-wish"><i class="icon-heart"></i></a>
-                        <a  class="btn-quickview md-trigger" data-modal="modal-3"><i class="icon-eye"></i></a>
-                      </div>
-                    </div>             
-                  </div>
-                  <div class="product-info">
-                    <h4 class="product-title"><a href="product-details.html">Qui Ratione Volup</a></h4>  
-                    <div class="align-items">
-                      <div class="pull-left">
-                        <span class="price">$56.00</span>
-                      </div>
-                      <div class="pull-right">
-                        <div class="reviews-icon">
-                          <i class="i-color fa fa-star"></i>
-                          <i class="i-color fa fa-star"></i>
-                          <i class="i-color fa fa-star"></i>
-                          <i class="fa fa-star-o"></i>
-                          <i class="fa fa-star-o"></i>
-                        </div>
-                      </div>
-                    </div> 
-                  </div>
-                </div>
-              </div>
+              {% endfor %}
             </div>
           </div>                              
         </div>
@@ -841,7 +669,9 @@
                 </div>
                 <div class="col-md-8 col-sm-6 col-xs-12">
                   <div class="info-panel">
-                    <h1 class="product-title">{{product.name}}</h1>
+                    <h1 class="product-title">
+                      <a href="{% url 'single-product' product.slug %}">{{product.name}}</a>
+                    </h1>
                     <!-- Rattion Price -->
                     <div class="price-ratting">
                       <div class="price float-left">
@@ -855,7 +685,12 @@
                     </div> 
                     <!-- Quantity Cart -->
                     <div class="quantity-cart">
-                      <button class="btn btn-common"><i class="icon-basket"></i> add to cart</button>
+
+                      {% if product.stock > 0 %}
+                          <button class="btn btn-common"><i class="icon-basket"></i> add to cart</button>
+                      {% else %}
+                          <button class="btn btn-common"> Stock out</button>
+                      {% endif %}
                     </div>
                     <!-- Share -->
                     <div class="share-icons pull-right">

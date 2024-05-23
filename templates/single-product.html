@@ -32,42 +32,7 @@
                 <div>
                   <img src="{{product.image.url}}"  alt="">
                 </div>
-                <div>
-                  <img src="{% static 'assets/img/single-product/img5.jpg' %}"  alt="">
-                </div>
-                <div>
-                  <img src="{% static 'assets/img/single-product/img5.jpg' %}"  alt="">
-                </div>
-                <div>
-                  <img src="{% static 'assets/img/single-product/img5.jpg' %}"  alt="">
-                </div>
-                <div>
-                  <img src="{% static 'assets/img/single-product/img5.jpg' %}"  alt="">
-                </div>
-                <div>
-                  <img src="{% static 'assets/img/single-product/img5.jpg' %}"  alt="">
-                </div>
               </div>
-              <ul id="productthumbnail" class="slider slider-nav">
-                <li>
-                  <img src="assets/img/single-product/small/img1.jpg"  alt="">
-                </li>
-                <li>
-                  <img src="assets/img/single-product/small/img2.jpg"  alt="">
-                </li>
-                <li>
-                  <img src="assets/img/single-product/small/img3.jpg"  alt="">
-                </li>
-                <li>
-                  <img src="assets/img/single-product/small/img4.jpg"  alt="">
-                </li>
-                <li>
-                  <img src="assets/img/single-product/small/img5.jpg"  alt="">
-                </li>
-                <li>
-                  <img src="assets/img/single-product/small/img3.jpg"  alt="">
-                </li>
-              </ul>
             </div>
           </div>
           <div class="col-md-8 col-sm-6 col-xs-12">
@@ -80,12 +45,12 @@
                 </div>
                 <div class="ratting float-right">
                   <div class="product-star">
-                    <i class="icon-star active"></i>
-                    <i class="icon-star active"></i>
-                    <i class="icon-star active"></i>
-                    <i class="icon-star active"></i>
-                    <i class="icon-star active"></i>
-                    <span>(01 Customer Review)</span>
+                    <i class="i-color fa fa-star{% if product.average_rating < 1.0 %}-o {% else %}{% endif %}"></i>
+                    <i class="i-color fa fa-star{% if product.average_rating < 2.0 %}-o {% else %}{% endif %}"></i>
+                    <i class="i-color fa fa-star{% if product.average_rating < 3.0 %}-o {% else %}{% endif %}"></i>
+                    <i class="i-color fa fa-star{% if product.average_rating < 4.0 %}-o {% else %}{% endif %}"></i>
+                    <i class="i-color fa fa-star{% if product.average_rating < 5.0 %}-o {% else %}{% endif %}"></i>
+                    <span>( {% if product.review_count == 0 %} 0 {% else %} {{ product.review_count|stringformat:"02d" }}{% endif %} Customer Reviews )</span>
                   </div>  
                 </div>
               </div>
@@ -141,100 +106,121 @@
                   <div class="customer-review">
                     <h3 class="small-title">Customer review</h3>
                     <ul class="product-comments clearfix">
-                      <li class="mb-30">
-                        <div class="pro-reviewer">
-                          <img src="assets/img/reviewer/1.jpg"  alt="">
-                        </div>
-                        <div class="pro-reviewer-comment">
-                          <div class="fix">
-                            <div class="pull-left mbl-center">
-                              <h5><strong>Gerald Barnes</strong></h5>
-                              <p class="reply-date">27 Jun, 2016 at 2:30pm</p>
-                            </div>
-                            <div class="comment-reply pull-right">
-                              <a href="#"><i class="fa fa-reply"></i></a>
-                              <a href="#"><i class="fa fa-close"></i></a>
-                            </div>
-                          </div>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan egestas elese ifend. Phasellus a felis at est bibendum feugiat ut eget eni Praesent et messages in con sectetur posuere dolor non.</p>
-                        </div>
-                      </li>
-                      <li class="threaded-comments">
-                        <div class="pro-reviewer">
-                          <img src="assets/img/reviewer/2.jpg"  alt="">
-                        </div>
-                        <div class="pro-reviewer-comment">
-                          <div class="fix">
-                            <div class="pull-left mbl-center">
-                              <h5 class="text-uppercase mb-0"><strong>Gerald Barnes</strong></h5>
-                              <p class="reply-date">27 Jun, 2016 at 2:30pm</p>
-                            </div>
-                            <div class="comment-reply pull-right">
-                              <a href="#"><i class="fa fa-reply"></i></a>
-                              <a href="#"><i class="fa fa-close"></i></a>
-                            </div>
-                          </div>
-                          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer accumsan egestas elese ifend. Phasellus a felis at est bibendum feugiat ut eget eni Praesent et messages in con sectetur posuere dolor non.</p>
-                        </div>
-                      </li>
+
+                      {% if product.reviews.all|length == 0 %}
+
+                        No Reviews
+
+                      {% else %}
+                          {% for review in product.reviews.all|slice:":6" %}
+                            <li class="mb-30">
+                              <div class="pro-reviewer">
+                                <img src="{{review.user.image.url}}"  alt="">
+                              </div>
+                              <div class="pro-reviewer-comment">
+                                <div class="fix">
+                                  <div class="pull-left mbl-center">
+                                    <h5><strong>{{review.user.first_name}} {{review.user.last_name}}</strong></h5>
+                                    <p class="reply-date">{{review.created_at | date:'M d, Y'}}</p>
+                                  </div>
+                                  <div class="comment-reply pull-right">
+                                    {% if review.rating == 5.0 %}
+                                      <div class="reviews-icon">
+                                        <i class="i-color fa fa-star"></i>
+                                        <i class="i-color fa fa-star"></i>
+                                        <i class="i-color fa fa-star"></i>
+                                        <i class="i-color fa fa-star"></i>
+                                        <i class="i-color fa fa-star"></i>
+                                      </div>
+                                    {% elif review.rating == 4.0 %}
+                                      <div class="reviews-icon">
+                                        <i class="i-color fa fa-star"></i>
+                                        <i class="i-color fa fa-star"></i>
+                                        <i class="i-color fa fa-star"></i>
+                                        <i class="i-color fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                      </div>
+                                    {% elif review.rating == 3.0 %}
+                                      <div class="reviews-icon">
+                                        <i class="i-color fa fa-star"></i>
+                                        <i class="i-color fa fa-star"></i>
+                                        <i class="i-color fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                      </div>
+                                    {% elif review.rating == 2.0 %}
+                                      <div class="reviews-icon">
+                                        <i class="i-color fa fa-star"></i>
+                                        <i class="i-color fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                      </div>
+                                    {% elif review.rating == 1.0 %}
+                                      <div class="reviews-icon">
+                                        <i class="i-color fa fa-star"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                        <i class="fa fa-star-o"></i>
+                                      </div>
+                                    {% endif %}
+                                  </div>
+                                </div>
+                                <p style="width: 100%;">{{review.review_message}}</p>
+                              </div>
+                            </li>
+                          {% endfor %}
+                      {% endif %}
+
                     </ul>
                   </div>
+
                   <div class="leave-review">
                     <h3 class="small-title">Leave your reviw</h3>
-                    <div class="your-rating mb-30">
-                      <p class="mb-10"><strong>Your Rating</strong></p>
-                      <span>
-                        <a href="#"><i class="fa fa-star-o"></i></a>
-                      </span>
-                      <span class="separator">|</span>
-                      <span>
-                        <a href="#"><i class="fa fa-star-o"></i></a>
-                        <a href="#"><i class="fa fa-star-o"></i></a>
-                      </span>
-                      <span class="separator">|</span>
-                      <span>
-                        <a href="#"><i class="fa fa-star-o"></i></a>
-                        <a href="#"><i class="fa fa-star-o"></i></a>
-                        <a href="#"><i class="fa fa-star-o"></i></a>
-                      </span>
-                      <span class="separator">|</span>
-                      <span>
-                        <a href="#"><i class="fa fa-star-o"></i></a>
-                        <a href="#"><i class="fa fa-star-o"></i></a>
-                        <a href="#"><i class="fa fa-star-o"></i></a>
-                        <a href="#"><i class="fa fa-star-o"></i></a>
-                      </span>
-                      <span class="separator">|</span>
-                      <span>
-                        <a href="#"><i class="fa fa-star-o"></i></a>
-                        <a href="#"><i class="fa fa-star-o"></i></a>
-                        <a href="#"><i class="fa fa-star-o"></i></a>
-                        <a href="#"><i class="fa fa-star-o"></i></a>
-                        <a href="#"><i class="fa fa-star-o"></i></a>
-                      </span>
-                    </div>
-                    <div class="reply-box">
-                      <form class="form-horizontal">
-                        <div class="form-group">
-                          <div class="col-md-6">
-                            <input class="form-control" type="text" name="Name" placeholder="Your name here...">
+                    {% if request.user.is_authenticated %}
+                      
+                    
+                    <form action="{% url 'product-review' product.slug %}" method="POST">
+                      {% csrf_token %}
+                      <div class="your-rating">
+                        <p class="mb-10"><strong>Your Rating</strong></p>
+                        <div class="rating">
+                          <input type="radio" id="star5" name="rating" value="5"  />
+                          <label class="star" for="star5" title="Awesome" aria-hidden="true"></label>
+                          <input type="radio" id="star4" name="rating" value="4" />
+                          <label class="star" for="star4" title="Great" aria-hidden="true"></label>
+                          <input type="radio" id="star3" name="rating" value="3" />
+                          <label class="star" for="star3" title="Very good" aria-hidden="true"></label>
+                          <input type="radio" id="star2" name="rating" value="2" />
+                          <label class="star" for="star2" title="Good" aria-hidden="true"></label>
+                          <input type="radio" id="star1" name="rating" value="1" checked />
+                          <label class="star" for="star1" title="Bad" aria-hidden="true"></label>
+                        </div>
+                      </div>
+                      <div class="reply-box">
+                        <div class="form-horizontal">
+                          <div class="form-group">
+                            <div class="col-md-12 mt-5">
+                              <input class="form-control" name="subject" type="text" placeholder="Subject..." required>
+                            </div>
                           </div>
-                          <div class="col-md-6">
-                            <input class="form-control" name="subject" type="text" placeholder="Subject...">
+                          <div class="form-group">
+                            <div class="col-md-12">
+                              <textarea class="form-control input-lg" name="review_message" rows="4" placeholder="Your review here..." required></textarea>
+                            </div>
+                          </div>
+                          <div class="form-group">
+                            <div class="col-md-12">
+                              <button class="btn btn-common" type="submit">Submit Review</button>
+                            </div>
                           </div>
                         </div>
-                        <div class="form-group">
-                          <div class="col-md-12">
-                            <textarea class="form-control input-lg" name="comment" rows="4" placeholder="Your review here..."></textarea>
-                          </div>
-                        </div>
-                        <div class="form-group">
-                          <div class="col-md-12">
-                            <button class="btn btn-common" type="submit">Submit Review</button>
-                          </div>
-                        </div>
-                      </form>
-                    </div>
+                      </div>
+                    </form>
+                    {% else %}
+                      Please Login for Review
+                    {% endif %}
                   </div>
                 </div>    
               </div>
