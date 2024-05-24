@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse
-from .models import Product, Category, ProductReview
+from .models import Cart, Product, Category, ProductReview
 
 # Create your views here.
 
@@ -38,6 +39,35 @@ def product_review(request, slug):
         )
         review.save()
         return redirect(reverse('single-product', kwargs={'slug': slug}))
+    
+
+
+def add_to_cart(request, id):
+    
+    if request.user.is_authenticated:
+        user = request.user
+        product = get_object_or_404(Product, pk=id)
+        quantity = request.POST.get('quantity')
+        
+        if quantity:
+            quantity = int(quantity),
+        else:
+            quantity = 1
+        
+        cart = Cart(
+            user = user, 
+            product = product,
+            quantity = quantity,
+        )
+         
+        cart.save()
+        
+        return redirect('home')
+    
+    else:
+        return redirect('/account/login')
+    
+    
 
 def about(request):
     return render(request, 'about.html')

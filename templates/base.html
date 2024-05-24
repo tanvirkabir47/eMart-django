@@ -171,41 +171,37 @@
                     <a href="#" class="cart-icon cart-btn"><i class="icon-basket"></i><span class="cart-label">3</span></a>
                     <div class="cart-box">
                       <div class="popup-container">
-                        <div class="cart-entry">
-                          <a href="#" class="image">
-                            <img src="{% static 'assets/img/products/product-menu-1.jpg' %}"  alt="">
-                          </a>
-                          <div class="content">
-                            <a href="#" class="title">Pullover Batwing</a>
-                            <p class="quantity">Quantity: 3</p>
-                            <span class="price">$45.00</span>
-                          </div>
-                          <div class="button-x">
-                            <i class="icon-close"></i>
-                          </div>
-                        </div>
-                        <div class="cart-entry">
-                          <a href="#" class="image">
-                            <img src="{% static 'assets/img/products/product-menu-2.jpg' %}"  alt="">
-                          </a>
-                          <div class="content">
-                            <a href="#" class="title">Pullover Batwing</a>
-                            <p class="quantity">Quantity: 3</p>
-                            <span class="price">$90.00</span>
-                          </div>
-                          <div class="button-x">
-                            <i class="icon-close"></i>
-                          </div>
-                        </div>
+                        {% if cart_items %}
+                            {% for cart in cart_items %}
+                            <div class="cart-entry">
+                              <a href="#" class="image">
+                                <img src="{{cart.product.image.url}}"  alt="">
+                              </a>
+                              <div class="content">
+                                <a href="#" class="title">{{ cart.product.name }}</a>
+                                <p class="quantity">Quantity: {{ cart.quantity }}</p>
+                                <span class="price">${{cart.product.price}}</span>
+                              </div>
+                              <div class="button-x">
+                                <i class="icon-close"></i>
+                              </div>
+                            </div>
+                          {% endfor %}
+                        
+                        
+                        
                         <div class="summary">
                           <div class="subtotal">Sub Total</div>
-                          <div class="price-s">$210.5</div>
+                          <div class="price-s">${{cart_total}}</div>
                         </div>
                         <div class="cart-buttons">
                             <a href="./cart-page.html" class="btn btn-border-2">View Cart</a>
                             <a href="./checkout.html" class="btn btn-common">Checkout</a>
                             <div class="clear"></div>
                         </div>
+                        {% else %}
+                            No cart items available
+                        {% endif %}
                       </div>
                     </div>
                   </li>  

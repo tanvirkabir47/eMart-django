@@ -166,7 +166,7 @@
                       <div class="add-to-links"> 
 
                         {% if product.stock > 0 %}
-                          <a href="#" class="btn-cart"><i class="icon-basket"></i></a>
+                          <a href="{% url 'add-to-cart' product.id %}" class="btn-cart"><i class="icon-basket"></i></a>
                           <a href="#" class="btn-wish"><i class="icon-heart"></i></a>
                         {% endif %}                 
 
@@ -248,8 +248,8 @@
                         <div class="actions">
                           <div class="add-to-links">
                             {% if product.stock > 0 %}
-                              <a href="#" class="btn-cart"><i class="icon-basket"></i></a>
-                              <a href="#" class="btn-wish"><i class="icon-heart"></i></a>
+                              <a href="{% url 'add-to-cart' product.id %}" class="btn-cart"><i class="icon-basket"></i></a>
+                              <a href="" class="btn-wish"><i class="icon-heart"></i></a>
                             {% endif %} 
                             <a  class="btn-quickview md-trigger" data-modal="modal-{{product.id}}"><i class="icon-eye"></i></a>
                           </div>

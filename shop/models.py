@@ -68,4 +68,17 @@ class ProductReview(models.Model):
     
     class Meta:
         ordering = ('-created_at',)
+        
+        
+class Cart(models.Model):
+    user = models.ForeignKey(User, related_name='user', on_delete=models.CASCADE)
+    product = models.ForeignKey(Product, related_name='cart_product', on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    quantity = models.IntegerField(default=1)
+    
+    def __str__(self):
+        return self.product.name
+    
+    class Meta:
+        ordering = ('-created_at',)
     
