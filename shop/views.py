@@ -1,6 +1,8 @@
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
+from django.contrib import messages
 from .models import Cart, Product, Category, ProductReview
 
 # Create your views here.
@@ -61,13 +63,31 @@ def add_to_cart(request, id):
         )
          
         cart.save()
+        messages.success(request, "Cart Item added successfully!!!")
         
-        return redirect('home')
+        return redirect('add-cart-view')
+    
+    else:
+        return redirect('/account/login')
+    
+
+@login_required
+def remove_from_cart(request, id):
+    if request.user.is_authenticated:
+        user = request.user
+        cart = get_object_or_404(Cart, id=id, user=user)
+        cart.delete()
+        messages.success(request, "Cart Item remove successfully!!!")
+        return redirect('add-cart-view') 
     
     else:
         return redirect('/account/login')
     
     
+    
+def cart(request):
+    return render(request, 'cart-page.html',)
+
 
 def about(request):
     return render(request, 'about.html')

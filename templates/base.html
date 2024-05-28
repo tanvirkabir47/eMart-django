@@ -168,7 +168,17 @@
                 <ul>                
                   <li><a class="cart-icon cart-btn" href="wishlist.html"><span class="icon-heart"></span></a></li>
                   <li>
-                    <a href="#" class="cart-icon cart-btn"><i class="icon-basket"></i><span class="cart-label">3</span></a>
+                    <a href="#" class="cart-icon cart-btn"><i class="icon-basket"></i>
+                      <span class="cart-label">
+                        {% if cart_items %}
+
+                          {{cart_items.count}}
+                        
+                        {% else %}
+                           0
+                        {% endif %}
+                      </span>
+                    </a>
                     <div class="cart-box">
                       <div class="popup-container">
                         {% if cart_items %}
@@ -178,12 +188,15 @@
                                 <img src="{{cart.product.image.url}}"  alt="">
                               </a>
                               <div class="content">
-                                <a href="#" class="title">{{ cart.product.name }}</a>
+                                <a href="" class="title">{{ cart.product.name }}</a>
                                 <p class="quantity">Quantity: {{ cart.quantity }}</p>
                                 <span class="price">${{cart.product.price}}</span>
                               </div>
                               <div class="button-x">
-                                <i class="icon-close"></i>
+                                <form action="{% url 'remove-from-cart' cart.id %}" method="POST">
+                                  {% csrf_token %}
+                                  <button type="submit"><i class="icon-close"></i></button>
+                                </form>
                               </div>
                             </div>
                           {% endfor %}
@@ -195,7 +208,7 @@
                           <div class="price-s">${{cart_total}}</div>
                         </div>
                         <div class="cart-buttons">
-                            <a href="./cart-page.html" class="btn btn-border-2">View Cart</a>
+                            <a href="{% url 'add-cart-view' %}" class="btn btn-border-2">View Cart</a>
                             <a href="./checkout.html" class="btn btn-common">Checkout</a>
                             <div class="clear"></div>
                         </div>

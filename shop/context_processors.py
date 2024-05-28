@@ -7,5 +7,6 @@ def cart(request):
         cart_total = sum(item.product.price * item.quantity for item in cart_items)
     else:
         cart_items = []
+        cart_total= []
         
     return {'cart_items': cart_items, 'cart_total': cart_total}

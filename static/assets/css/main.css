@@ -2274,7 +2274,6 @@ footer .block-subscribe .form-control {
   margin-bottom: 10px;
 }
 .wishlist-entry .entry {
-  line-height: 125px;
   text-align: center;
 }
 .wishlist-entry .price {
@@ -3953,4 +3952,37 @@ fieldset[disabled] .btn {
 .rating > label:hover ~ input:checked ~ label,
 .rating > input:checked ~ label:hover ~ label {
   color: #FECE31;
+}
+
+
+.quantity-increase{
+  display: flex;
+  justify-content: center;
+}
+.quantity-increase button{
+  background: transparent;
+  border: 1px solid #EAEAEA;
+  padding: 10px 16px;
+  font-size: 20px;
+}
+.quantity-increase input{
+  width: 50px;
+  text-align: center;
+  background: transparent;
+  border: 1px solid #EAEAEA;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 22px;
+}
+.single-pd-add-cart button{
+  padding: 10px 24px;
+  border-radius: 6px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 32px;
+  text-align: center;
+  color: var(--primary-color);
+  background: transparent;
+  border: 1px solid var(--primary-color);
+  width: 100%;
 }
