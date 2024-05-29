@@ -68,14 +68,14 @@
                 </div>
               </div>
               <div class="col-md-2 col-sm-2 entry">
-                <div class="price">
-                  $ {{product.product.price}}
+                <div class="price" id="price-{{product.product.id}}" data-unit-price="{{product.product.price}}">
+                  $ {{ product.total_price }}
                 </div>
               </div>
               <div class="col-md-4 col-sm-4">
                 <div class="quantity-increase">
                   <button id="decreaseQuantity-{{product.product.id}}">-</button>
-                  <input type="text" id="quantity-{{product.product.id}}" value="1">
+                  <input type="text" id="quantity-{{product.product.id}}" value="{{product.quantity}}">
                   <button id="increaseQuantity-{{product.product.id}}">+</button>
                 </div>
               </div>
@@ -93,6 +93,30 @@
 
           {% endfor %}
 
+          <div class="card card--padding fill-bg" style="margin-top: 50px;">
+            <table class="table-total-checkout">                
+              <tbody>
+                <tr>
+                  <th style="padding-bottom: 10px; font-weight: normal; font-size: 18px;">SUB TOTAL:</th>
+                  <td id="cart-subtotal" style="padding-bottom: 10px; font-weight: normal; font-size: 18px;">${{cart_subtotal}}</td>
+                </tr>
+                <tr>
+                  <th style="padding-bottom: 10px; font-weight: normal; font-size: 18px;">Shipping:</th>
+                  <td style="padding-bottom: 10px; font-weight: normal; font-size: 18px;">${{shipping_cost}}</td>
+                </tr>
+                <tr>
+                  <th style="padding-bottom: 10px; font-weight: normal; font-size: 18px;">Discount:</th>
+                  <td style="padding-bottom: 10px; font-weight: normal; font-size: 18px;">-5%</td>
+                </tr>
+                <tr>
+                  <th style="padding-top: 15px;">GRAND TOTAL:</th>
+                  <td id="cart-total" style="padding-top: 15px;">${{cart_total|floatformat:2}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <a href="#" class="btn btn-common btn-full">Place Order Now <span class="icon-action-redo"></span></a>              
+          </div>
+
           {% else %}
             <p>No Cart Items added...</p>
 
@@ -107,29 +131,46 @@
 
 {% block script %}
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script>
-  {% for pd in cart_items %}
-  document.addEventListener('DOMContentLoaded', (event) => {
-      let increaseQuantityBtn = document.getElementById('increaseQuantity-{{pd.product.id}}');
-      let decreaseQuantityBtn = document.getElementById('decreaseQuantity-{{pd.product.id}}');
-  
-      increaseQuantityBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          var quantityInput = document.getElementById('quantity-{{pd.product.id}}');
-          var currentQuantity = parseInt(quantityInput.value, 10);
-          quantityInput.value = currentQuantity + 1;
-      })
-  
-      decreaseQuantityBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          var quantityInput = document.getElementById('quantity-{{pd.product.id}}');
-          var currentQuantity = parseInt(quantityInput.value, 10);
-          if (currentQuantity > 1) {
-              quantityInput.value = currentQuantity - 1;
-          }
-      })
+  $(document).ready(function() {
+    $('.quantity-increase button').click(function() {
+      var productId = $(this).attr('id').split('-')[1];
+      var action = $(this).text();
+      var quantityInput = $('#quantity-' + productId);
+      var quantity = parseInt(quantityInput.val());
+
+      if (action == '+') {
+        quantity++;
+      } else if (action == '-' && quantity > 1) {
+        quantity--;
+      }
+
+      $.ajax({
+        url: '{% url "update-cart-quantity" %}',
+        method: 'POST',
+        data: {
+          'product_id': productId,
+          'quantity': quantity,
+          'csrfmiddlewaretoken': '{{ csrf_token }}'
+        },
+        success: function(response) {
+          quantityInput.val(quantity);
+          var priceElement = $('#price-' + productId);
+          var updatedPrice = parseFloat(response.updated_price);
+          var cartTotal = parseFloat(response.cart_total);
+          var cartSubtotal = parseFloat(response.cart_subtotal);
+          priceElement.text('$' + updatedPrice.toFixed(2));
+          $('#cart-subtotal').text('$' + cartSubtotal.toFixed(2));
+          $('#cart-total').text('$' + cartTotal.toFixed(2));
+          console.log(response);
+        },
+        error: function(response) {
+          alert('Error updating cart');
+        }
+      });
+    });
   });
-  {% endfor %}
 </script>
   
 {% endblock script %}
