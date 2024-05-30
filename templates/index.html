@@ -93,62 +93,10 @@
       </div>
     </section>
 
-  
-    <section class="feature-categories section">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-4 col-sm-4 col-xs-12">
-            <div class="feature-item-content">
-              <img src="{% static 'assets/img/feature/img1.jpg' %}"  alt="">
-              <div class="feature-content">
-                <div class="banner-text">
-                  <h4>Men's Collection</h4>
-                  <p>Summer Exclusive</p>
-                </div>                
-                <a href="{% url 'products' %}" class="btn btn-common">Shop Now</a>
-              </div>
-            </div>
-          </div>         
-          <div class="col-md-4 col-sm-4 col-xs-12">
-            <div class="feature-item-content">
-              <img src="{% static 'assets/img/feature/img3.jpg' %}"  alt="">
-              <div class="feature-content">
-                <div class="banner-text">
-                  <h4>Women's Clothing</h4>
-                  <p>Up to <span>70%</span> OFF</p>
-                </div>                 
-                <a href="{% url 'products' %}" class="btn btn-common">Shop Now</a>
-              </div>
-            </div>
-          </div>
-           <div class="col-md-4 col-sm-4 col-xs-12">
-            <div class="feature-item-content mb-30">
-              <img src="{% static 'assets/img/feature/img2.jpg' %}"  alt="">
-              <div class="feature-content">
-                <div class="banner-text accessories">
-                  <h4>Accessories</h4>
-                  <p>Handpicked for Men/Women</p>
-                </div>
-                <a href="{% url 'products' %}" class="btn btn-common">Shop Now</a>
-              </div>
-            </div>
-            <div class="feature-item-content">
-              <img src="{% static 'assets/img/feature/img4.jpg' %}"  alt="">
-              <div class="feature-content">
-                <div class="banner-text accessories">
-                  <h4>Kids Essentials</h4>
-                  <p>Best Collection for Kids</p>
-                </div>
-                <a href="{% url 'products' %}" class="btn btn-common">Shop Now</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+
     
 
-    <section id="shop-collection">
+    <section id="shop-collection" style="margin-top: 80px;">
       <div class="container">
         <h1 class="section-title">New Arrivals</h1>
         <hr class="lines">
@@ -167,7 +115,7 @@
 
                         {% if product.stock > 0 %}
                           <a href="{% url 'add-to-cart' product.id %}" class="btn-cart"><i class="icon-basket"></i></a>
-                          <a href="#" class="btn-wish"><i class="icon-heart"></i></a>
+                          <a href="{% url 'add-to-fav' product.id %}" class="btn-wish"><i class="icon-heart"></i></a>
                         {% endif %}                 
 
                         <a class="btn-quickview md-trigger" data-modal="modal-{{product.id}}"><i class="icon-eye"></i></a>
@@ -224,7 +172,7 @@
           <div class="discount-text">
             <p>Best Bargains</p>
             <h3>Exclusive Deals of This Season!</h3>
-            <a href="#" class="btn btn-common btn-large">View Deals</a>
+            <!-- <a href="#" class="btn btn-common btn-large">View Deals</a> -->
           </div>
         </div>
       </div>
@@ -249,7 +197,7 @@
                           <div class="add-to-links">
                             {% if product.stock > 0 %}
                               <a href="{% url 'add-to-cart' product.id %}" class="btn-cart"><i class="icon-basket"></i></a>
-                              <a href="" class="btn-wish"><i class="icon-heart"></i></a>
+                              <a href="{% url 'add-to-fav' product.id %}" class="btn-wish"><i class="icon-heart"></i></a>
                             {% endif %} 
                             <a  class="btn-quickview md-trigger" data-modal="modal-{{product.id}}"><i class="icon-eye"></i></a>
                           </div>
@@ -302,7 +250,7 @@
             <h2>Multi-vendor eCommerce Template</h2>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis rem, ducimus reprehenderit sed molestiae iure sapiente accusamus incidunt minima expedita velit assumenda vitae libero. Eaque nostrum magni architecto, corporis doloremque!</p>
             <p>
-              <a href="category.html" class="btn btn-common">Explore</a>
+              <a href="{% url 'products' %}" class="btn btn-common">Explore</a>
             </p>
           </div>
         </div>

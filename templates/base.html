@@ -151,10 +151,9 @@
                     <ul class="categories-filter animate-dropdown">
                       <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="category.html">Categories <span class="caret"></span></a>
                         <ul class="dropdown-menu animated fadeIn mt-5">
-                          <li><a tabindex="-1" href="#">- Laptops</a></li>
-                          <li><a tabindex="-1" href="#">- Desktops</a></li>
-                          <li><a tabindex="-1" href="#">- Cameras</a></li>
-                          <li><a tabindex="-1" href="#">- Mobile Phones</a></li>
+                          {% for category in categories %}
+                            <li><a tabindex="-1" href="{% url 'category-product' category.slug %}">- {{category}}</a></li>
+                          {% endfor %}
                         </ul>
                       </li>
                     </ul>
@@ -166,7 +165,7 @@
 
               <div class="shop-cart">
                 <ul>                
-                  <li><a class="cart-icon cart-btn" href="wishlist.html"><span class="icon-heart"></span></a></li>
+                  <li><a class="cart-icon cart-btn" href="{% url 'wishlist' %}"><span class="icon-heart"></span></a></li>
                   <li>
                     <a href="#" class="cart-icon cart-btn"><i class="icon-basket"></i>
                       <span class="cart-label">
@@ -205,7 +204,7 @@
                         
                         <div class="summary">
                           <div class="subtotal">Sub Total</div>
-                          <div class="price-s">${{cart_total}}</div>
+                          <div class="price-s">${{cart_subtotal}}</div>
                         </div>
                         <div class="cart-buttons">
                             <a href="{% url 'add-cart-view' %}" class="btn btn-border-2">View Cart</a>
@@ -261,6 +260,9 @@
               <ul class="nav navbar-nav navbar-right">
                 <li>
                   <a {% if request.path == '/' %} class="active" {% endif %} href="{% url 'home' %}">Home</a>
+                </li>
+                <li>
+                  <a {% if request.path == '/products/' %} class="active" {% endif %} href="{% url 'products' %}">Shop</a>
                 </li>
                 <li>
                   <a href="{% url 'about' %}" {% if request.path == '/about/' %} class="active" {% endif %}>About</a>
@@ -406,21 +408,18 @@
                   <div class="contact-us">
                     <h3 class="widget-title">Contact Us</h3>
                     <ul class="contact-list">
-                      <li><i class="icon-home"></i> <span>888 6th 10001 Oakwood Avenue, New York City, NY</span></li>
-                      <li><i class="icon-call-out"></i> <span>212-631-5135 <br> 212-631-5105</span></li>
-                      <li><i class="icon-envelope"></i> <span>sales@emart.com  support@emart.com</span></li>
+                      <li><i class="icon-home"></i> <span>Tarash, Sirajganj <br> Bangladesh</span></li>
+                      <li><i class="icon-call-out"></i> <span>01719-048200</span></li>
+                      <li><i class="icon-envelope"></i> <span>tanvirkabir47@gmail.com</span></li>
                     </ul>
                   </div>
                 </div>
                 <div class="col-md-3 col-sm-6">
                   <h3 class="widget-title">Useful Links</h3>
                   <ul>
-                    <li><a href="login.html">My Account</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="checkout.html">Checkout</a></li>
-                    <li><a href="404.html">404 Page</a></li>
+                    <li><a href="{% url 'login' %}">My Account</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
                     <li><a href="wishlist.html">Wishlist</a></li>
-                    <li><a href="compare.html">Compare</a></li>
                   </ul>
                 </div>
                 <div class="col-md-3 col-sm-6">

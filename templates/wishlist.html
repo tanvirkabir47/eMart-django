@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %} Wishlist - eMart Online Shopping {% endblock title %}
+
+{% block main %}
+
+
+<div class="page-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">            
+        <div class="breadcrumb">
+          <a href="{% url 'home' %}"><i class="icon-home"></i> Home</a>
+          <span class="crumbs-spacer"><i class="fa fa-angle-double-right"></i></span>
+          <span class="current">Wishlist</span>
+          <h2 class="entry-title">Wishlist</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Page Header -->
+
+<!-- Start Content -->
+<div id="content">
+  <div class="container">
+    <div class="row">
+      <div class="header text-center">
+        <h3 class="small-title">Wishlist</h3>
+      </div>
+
+      {% if wishlist %}
+        <div class="col-md-12">
+          <div class="wishlist">
+            <div class="col-md-4 col-sm-4 text-center">
+              <p>Product</p>
+            </div>
+            <div class="col-md-2 col-sm-2">
+              <p>Price</p>
+            </div>
+            <div class="col-md-2 col-sm-2">
+              <p>Stock status</p>
+            </div>
+            <div class="col-md-2 col-sm-2">
+              <p>Add to cart</p>
+            </div>
+            <div class="col-md-2 col-sm-2">
+              <p>Close</p>
+            </div>
+          </div> 
+
+          {% for fav in wishlist %}
+
+            <div class="wishlist-entry clearfix">
+              <div class="col-md-4 col-sm-4">
+                <div class="cart-entry">
+                  <a class="image" href="#"><img src="{{fav.product.image.url}}"  alt=""></a>
+                  <div class="cart-content">
+                    <h4 class="title">{{fav.product.name}}</h4>
+                    <p>{{fav.product.quick_overview}}</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2 col-sm-2 entry">
+                <div class="price">
+                  $ {{fav.product.price}}
+                </div>
+              </div>
+              <div class="col-md-2 col-sm-2 entry">
+                {% if fav.product.stock > 0 %}
+                  <a class="instock">In stock</a>
+                {% else %}
+                  <p style="color: red; font-weight: bold;" class="outofstock">Out of stock</p>
+                {% endif %}
+              </div>
+              <div class="col-md-2 col-sm-2 entry">
+                <a class="btn btn-common " href="{% url 'add-to-cart' fav.product.id %}">
+                  <i class="icon-basket"></i> add to Cart
+                </a>
+              </div>
+              <div class="col-md-2 col-sm-2 entry">
+                <a class="btn-close" href="#"><i class="icon-close"></i></a>  
+              </div>
+            </div>
+            
+          {% endfor %}
+       
+        </div> 
+
+      {% else %}
+        <p>No wishlist items here...</p>
+      {% endif %}
+
+    </div>
+  </div>
+</div>
+
+{% endblock main %}
+

@@ -4,8 +4,9 @@ from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.contrib import messages
-from .models import Cart, Product, Category, ProductReview
+from .models import Cart, Product, Category, ProductReview, Wishlist
 from django.views.decorators.csrf import csrf_exempt
+from django.db.models import Count
 
 # Create your views here.
 
@@ -16,7 +17,15 @@ def home(request):
 
 def all_product(request):
     products = Product.objects.all()
-    return render(request, 'shop-category.html', {'products': products})
+    categories = Category.objects.annotate(product_count=Count('product'))
+    return render(request, 'shop-category.html', {'products': products, 'categories': categories})
+
+def categories_view(request, slug):
+    category = get_object_or_404(Category, slug=slug)
+    products = Product.objects.filter(category__slug=slug)
+    categories = Category.objects.annotate(product_count=Count('product'))
+    
+    return render(request, 'shop-category-data.html', {'products': products, 'category': category, 'categories': categories})
 
 def single_product(request, slug):
     product = get_object_or_404(Product, slug=slug)
@@ -122,6 +131,32 @@ def remove_from_cart(request, id):
     
 def cart(request):
     return render(request, 'cart-page.html',)
+
+
+@login_required
+def wishlist(request):
+    wishlist = Wishlist.objects.filter(user=request.user)
+    return render(request, 'wishlist.html', {'wishlist': wishlist})
+
+
+def add_to_fav(request, id):
+    if request.user.is_authenticated:
+        user = request.user
+        product = get_object_or_404(Product, pk=id)
+        
+        
+        if Wishlist.objects.filter(user=user, product=product).exists():
+            messages.error(request, "Product is already in your wishlist.")
+        else:
+            wishlist = Wishlist(user=user, product=product)
+            wishlist.save()
+            messages.success(request, "Wishlist item added successfully!")
+        
+        return redirect(request.META.get('HTTP_REFERER', '/'))
+    
+    else:
+        return redirect('/account/login')
+    
 
 
 def about(request):

@@ -12,7 +12,7 @@
         <div class="row">
           <div class="col-md-12">            
             <div class="breadcrumb">
-              <a href="{% url 'home' %}"><i class="icon-home"></i> Home</a>
+              <a href="#"><i class="icon-home"></i> Home</a>
               <span class="crumbs-spacer"><i class="fa fa-angle-double-right"></i></span>
               <span class="current">Shop Categories</span>
               <h2 class="entry-title">Shop Categories</h2>
@@ -53,65 +53,59 @@
             </div>
           </div>
           
-            {% if products %}
-            
-              {% for product in products %}
-                <div class="col-md-3 col-sm-6 col-xs-12">
+          {% if products %}
+          {% for product in products %}
+              <div class="col-md-3 col-sm-6 col-xs-12">
                   <div class="shop-product">
-                    <div class="product-box">
-                      <a href="#"><img src="{{product.image.url}}"  alt=""></a>
-                      <div class="cart-overlay">
-                      </div>
-                      <div class="actions">
-                        <div class="add-to-links"> 
-
-                          {% if product.stock > 0 %}
-                            <a href="{% url 'add-to-cart' product.id %}" class="btn-cart"><i class="icon-basket"></i></a>
-                            <a href="{% url 'add-to-fav' product.id %}" class="btn-wish"><i class="icon-heart"></i></a>
-                          {% endif %}                 
-
-                          <a class="btn-quickview md-trigger" data-modal="modal-{{product.id}}"><i class="icon-eye"></i></a>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="product-info">
-                      <h4 class="product-title"><a href="{% url 'single-product' product.slug %}">{{product.name}}</a></h4>  
-                      <div class="align-items">
-                        <div class="">
-                          <span class="price">Price: ${{product.price}}</span>
-                        </div>
-                        <div class="pull-right">
-                          <div class="reviews-icon">
-                            <i class="i-color fa fa-star{% if product.average_rating < 1.0 %}-o {% else %}{% endif %}"></i>
-                            <i class="i-color fa fa-star{% if product.average_rating < 2.0 %}-o {% else %}{% endif %}"></i>
-                            <i class="i-color fa fa-star{% if product.average_rating < 3.0 %}-o {% else %}{% endif %}"></i>
-                            <i class="i-color fa fa-star{% if product.average_rating < 4.0 %}-o {% else %}{% endif %}"></i>
-                            <i class="i-color fa fa-star{% if product.average_rating < 5.0 %}-o {% else %}{% endif %}"></i>
+                      <div class="product-box">
+                          <a href="#"><img src="{{ product.image.url }}" alt=""></a>
+                          <div class="cart-overlay"></div>
+                          <div class="actions">
+                              <div class="add-to-links">
+                                  {% if product.stock > 0 %}
+                                      <a href="{% url 'add-to-cart' product.id %}" class="btn-cart"><i class="icon-basket"></i></a>
+                                      <a href="{% url 'add-to-fav' product.id %}" class="btn-wish"><i class="icon-heart"></i></a>
+                                  {% endif %}
+                                  <a class="btn-quickview md-trigger" data-modal="modal-{{ product.id }}"><i class="icon-eye"></i></a>
+                              </div>
                           </div>
-                        </div>
-                      </div> 
-                      {% if product.stock > 0 %}
-                      <div class="align-items">
-                        <div class="">
-                          <span class="price">Stock: {{product.stock}}</span>
-                        </div>
-                      </div> 
-                      {% else %}
-                      <div class="align-items">
-                        <div class="">
-                          <span class="price">Stock out</span>
-                        </div>
-                      </div> 
-                      {% endif %}
-                    </div>
-                  </div>             
-                </div>
-              {% endfor %}
-
-            {% else %}
-                <p>no poduct</p>
-              
-            {% endif %}
+                      </div>
+                      <div class="product-info">
+                          <h4 class="product-title"><a href="{% url 'single-product' product.slug %}">{{ product.name }}</a></h4>
+                          <div class="align-items">
+                              <div>
+                                  <span class="price">Price: ${{ product.price }}</span>
+                              </div>
+                              <div class="pull-right">
+                                  <div class="reviews-icon">
+                                      <i class="i-color fa fa-star{% if product.average_rating < 1.0 %}-o{% endif %}"></i>
+                                      <i class="i-color fa fa-star{% if product.average_rating < 2.0 %}-o{% endif %}"></i>
+                                      <i class="i-color fa fa-star{% if product.average_rating < 3.0 %}-o{% endif %}"></i>
+                                      <i class="i-color fa fa-star{% if product.average_rating < 4.0 %}-o{% endif %}"></i>
+                                      <i class="i-color fa fa-star{% if product.average_rating < 5.0 %}-o{% endif %}"></i>
+                                  </div>
+                              </div>
+                          </div>
+                          {% if product.stock > 0 %}
+                              <div class="align-items">
+                                  <div>
+                                      <span class="price">Stock: {{ product.stock }}</span>
+                                  </div>
+                              </div>
+                          {% else %}
+                              <div class="align-items">
+                                  <div>
+                                      <span class="price">Stock out</span>
+                                  </div>
+                              </div>
+                          {% endif %}
+                      </div>
+                  </div>
+              </div>
+          {% endfor %}
+      {% else %}
+          <p>No products found in this category.</p>
+      {% endif %}
 
       </div>
 

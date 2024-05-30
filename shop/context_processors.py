@@ -1,4 +1,4 @@
-from .models import Cart
+from .models import Cart, Category
 from decimal import Decimal
 
 def cart(request):
@@ -23,4 +23,11 @@ def cart(request):
         'cart_total': cart_total, 
         'cart_subtotal': cart_subtotal,
         'shipping_cost': shipping_cost,
+    }
+    
+def categories(request):
+    categories = Category.objects.all()
+    
+    return {
+        'categories': categories,
     }
