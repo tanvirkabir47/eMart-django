@@ -81,7 +81,10 @@
                 </a>
               </div>
               <div class="col-md-2 col-sm-2 entry">
-                <a class="btn-close" href="#"><i class="icon-close"></i></a>  
+                <form action="{% url 'remove-fav' fav.id %}" method="POST">
+                  {% csrf_token %}
+                  <button type="submit" class="btn-close"><i class="icon-close"></i></button>  
+                </form>
               </div>
             </div>
             

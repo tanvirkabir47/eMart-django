@@ -66,17 +66,20 @@ def add_to_cart(request, id):
             quantity = int(quantity),
         else:
             quantity = 1
-        
-        cart = Cart(
-            user = user, 
-            product = product,
-            quantity = quantity,
-        )
+            
+        if Cart.objects.filter(user=user, product=product).exists():
+            messages.error(request, 'Product is already exists')
+        else:
+            cart = Cart(
+                user = user, 
+                product = product,
+                quantity = quantity,
+            )
          
-        cart.save()
-        messages.success(request, "Cart Item added successfully!!!")
+            cart.save()
+            messages.success(request, "Cart Item added successfully!!!")
         
-        return redirect('add-cart-view')
+        return redirect(request.META.get('HTTP_REFERER', '/'))
     
     else:
         return redirect('/account/login')
@@ -156,6 +159,16 @@ def add_to_fav(request, id):
     
     else:
         return redirect('/account/login')
+    
+@login_required
+def remove_from_fav(request, id):
+    if request.user.is_authenticated:
+        user = request.user
+        wishlist = get_object_or_404(Wishlist, id=id, user=user)
+        wishlist.delete()
+        messages.success(request, "Wishlist Item remove successfully!!!")
+        print(wishlist)
+        return redirect('wishlist')
     
 
 
