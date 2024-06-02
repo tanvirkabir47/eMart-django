@@ -15,8 +15,9 @@ def cart(request):
         cart_total = cart_subtotal + shipping_cost - discount
     else:
         cart_items = []
-        cart_total= 0
+        cart_total = 0
         cart_subtotal = 0
+        shipping_cost = 0
         
     return {
         'cart_items': cart_items, 
