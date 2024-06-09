@@ -32,7 +32,17 @@ def categories_view(request, slug):
     products = Product.objects.filter(category__slug=slug)
     categories = Category.objects.annotate(product_count=Count('product'))
     
-    return render(request, 'shop-category-data.html', {'products': products, 'category': category, 'categories': categories})
+    paginator = Paginator(products, 6)
+    page_number = request.GET.get('page')
+    paginates = paginator.get_page(page_number)
+    
+    return render(request, 'shop-category-data.html', {
+        'products': products, 
+        'category': category, 
+        'categories': categories,
+        'paginates': paginates,
+        'show_pagination': paginator.count > 6
+    })
 
 def single_product(request, slug):
     product = get_object_or_404(Product, slug=slug)
@@ -276,7 +286,7 @@ def checkout(request):
             messages.error(request, "Your card has been declined.")
 
     return render(request, 'checkout.html', {
-        'cart_items': cart_item_details,
+        'cart_item': cart_item_details,
         'cart_total': cart_total,
         'cart_subtotal': cart_subtotal,
         'shipping_cost': shipping_cost,
