@@ -53,9 +53,9 @@
             </div>
           </div>
           
-            {% if products %}
+           
             
-              {% for product in products %}
+              {% for product in paginates %}
                 <div class="col-md-3 col-sm-6 col-xs-12">
                   <div class="shop-product">
                     <div class="product-box">
@@ -75,7 +75,7 @@
                       </div>
                     </div>
                     <div class="product-info">
-                      <h4 class="product-title"><a href="{% url 'single-product' product.slug %}">{{product.name}}</a></h4>  
+                      <h4 class="product-title"><a href="{% url 'single-product' product.slug %}">{{product.name | slice:"45"}}..</a></h4>  
                       <div class="align-items">
                         <div class="">
                           <span class="price">Price: ${{product.price}}</span>
@@ -108,21 +108,28 @@
                 </div>
               {% endfor %}
 
-            {% else %}
-                <p>no poduct</p>
-              
-            {% endif %}
+           
 
       </div>
 
             <!-- Start Pagination -->
             <div class="pagination">
               <nav class="navigation pull-right">
-                <a class="next-page" href="#"><i class="fa fa-angle-left"></i></a>
-                <span class="current page-num">1</span>
-                <a class="page-num" href="#">2</a>
-                <a class="page-num" href="#">3</a>
-                <a class="next-page" href="#"><i class="fa fa-angle-right"></i></a>
+                {% if paginates.has_previous %}
+                  <a class="next-page" href="?page={{ paginates.previous_page_number }}"> <i class="fa fa-angle-left"></i></a>
+                {% endif %}
+
+                {% for num in paginates.paginator.page_range %}
+                   {% if num == paginates.number %}
+                    <span class="current page-num">{{ num }}</span>
+                  {% else %}
+                    <a class="page-num" href="?page={{ num }}">{{ num }}</a>
+                  {% endif %}
+                {% endfor %}
+
+                {% if paginates.has_next %}
+                   <a class="next-page" href="?page={{ paginates.next_page_number }}"><i class="fa fa-angle-right"></i></a>
+                {% endif %}
               </nav>              
             </div>
             <!-- End Pagination -->
@@ -134,7 +141,7 @@
  
     
 
-    {% for product in products %}
+    {% for product in paginates %}
       
         <div class="md-modal md-effect-3" id="modal-{{product.id}}">
           <div class="md-content">

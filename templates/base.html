@@ -146,7 +146,8 @@
             <div class="col-md-8 col-sm-10">              
               <!-- shopping cart end -->
               <div class="search-area">
-                <form>
+                <form method="POST" action="{% url 'search' %}">
+                  {% csrf_token %}
                   <div class="control-group">
                     <ul class="categories-filter animate-dropdown">
                       <li class="dropdown"> <a class="dropdown-toggle" data-toggle="dropdown" href="category.html">Categories <span class="caret"></span></a>
@@ -157,8 +158,8 @@
                         </ul>
                       </li>
                     </ul>
-                    <input class="search-field" placeholder="Search here...">
-                    <a class="search-button" href="#"><i class="icon-magnifier"></i></a> 
+                    <input class="search-field" placeholder="Search here..." name="search">
+                    <button type="submit" class="search-button"><i class="icon-magnifier"></i></button>
                   </div>
                 </form>
               </div>            
@@ -192,10 +193,7 @@
                                 <span class="price">${{cart.product.price}}</span>
                               </div>
                               <div class="button-x">
-                                <form action="{% url 'remove-from-cart' cart.id %}" method="POST">
-                                  {% csrf_token %}
-                                  <button type="submit"><i class="icon-close"></i> </button>
-                                </form>
+                                
                               </div>
                             </div>
                           {% endfor %}
@@ -208,7 +206,7 @@
                         </div>
                         <div class="cart-buttons">
                             <a href="{% url 'add-cart-view' %}" class="btn btn-border-2">View Cart</a>
-                            <a href="./checkout.html" class="btn btn-common">Checkout</a>
+                            <a href="{% url 'checkout' %}" class="btn btn-common">Checkout</a>
                             <div class="clear"></div>
                         </div>
                         {% else %}

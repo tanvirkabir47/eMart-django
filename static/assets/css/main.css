@@ -2490,6 +2490,7 @@ checkbox .checkbox-material {
 }
 .shop-product .product-info .product-title {
   margin-bottom: 10px;
+  min-height: 50px;
 }
 .shop-product .product-info .product-title a {
   font-size: 16px;
@@ -3985,4 +3986,9 @@ fieldset[disabled] .btn {
   background: transparent;
   border: 1px solid var(--primary-color);
   width: 100%;
+}
+
+
+.stripe-button-el{
+  display: none !important;
 }

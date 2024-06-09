@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %} Search - eMart Online Shopping {% endblock title %}
+
+{% block main %}
+    
+
+
+    <div id="content">
+      <div class="container">
+        <div class="row">         
+          <div class="col-sm-12">
+
+            {% if products %}
+
+              <div class="product-filter">
+                <p class="result-count">Showing result of your search keyword "{{query}}"</p>
+                <div class="sort-by">
+                
+                </div>
+              </div>
+              <div class="category-product-grid  row">
+                {% for product in paginates %}
+                  
+                
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                  <div class="shop-product">
+                    <div class="product-box">
+                      <a href="#"><img src="{{product.image.url}}"  alt=""></a>
+                      <div class="cart-overlay">
+                      </div>
+                      <div class="actions">
+                        <div class="add-to-links"> 
+
+                          {% if product.stock > 0 %}
+                            <a href="{% url 'add-to-cart' product.id %}" class="btn-cart"><i class="icon-basket"></i></a>
+                            <a href="{% url 'add-to-fav' product.id %}" class="btn-wish"><i class="icon-heart"></i></a>
+                          {% endif %}                 
+
+                          <a class="btn-quickview md-trigger" data-modal="modal-{{product.id}}"><i class="icon-eye"></i></a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="product-info">
+                      <h4 class="product-title"><a href="{% url 'single-product' product.slug %}">{{product.name}}</a></h4>  
+                      <div class="align-items">
+                        <div class="">
+                          <span class="price">Price: ${{product.price}} <del>$79.00</del></span>
+                        </div>
+                        <div class="pull-right">
+                          <div class="reviews-icon">
+                            <i class="i-color fa fa-star{% if product.average_rating < 1.0 %}-o {% else %}{% endif %}"></i>
+                            <i class="i-color fa fa-star{% if product.average_rating < 2.0 %}-o {% else %}{% endif %}"></i>
+                            <i class="i-color fa fa-star{% if product.average_rating < 3.0 %}-o {% else %}{% endif %}"></i>
+                            <i class="i-color fa fa-star{% if product.average_rating < 4.0 %}-o {% else %}{% endif %}"></i>
+                            <i class="i-color fa fa-star{% if product.average_rating < 5.0 %}-o {% else %}{% endif %}"></i>
+                          </div>
+                        </div>
+                      </div> 
+                      {% if product.stock > 0 %}
+                      <div class="align-items">
+                        <div class="">
+                          <span class="price">Stock: {{product.stock}}</span>
+                        </div>
+                      </div> 
+                      {% else %}
+                      <div class="align-items">
+                        <div class="">
+                          <span class="price">Stock out</span>
+                        </div>
+                      </div> 
+                      {% endif %}
+                    </div>
+                  </div>             
+                </div> 
+                {% endfor %}      
+              </div>
+
+            {% else %}
+              <p>No Item Found of your search keyword "{{query}}"</p>
+
+            {% endif %}
+
+
+          {% if show_pagination %}
+            <div class="pagination">
+              <div class="results-navigation pull-left">
+                
+              </div>
+              <nav class="navigation pull-right">
+                {% if paginates.has_previous %}
+                  <a class="next-page" href="?page={{ paginates.previous_page_number }}"> <i class="fa fa-angle-left"></i></a>
+                {% endif %}
+
+                {% for num in paginates.paginator.page_range %}
+                   {% if num == paginates.number %}
+                    <span class="current page-num">{{ num }}</span>
+                  {% else %}
+                    <a class="page-num" href="?page={{ num }}">{{ num }}</a>
+                  {% endif %}
+                {% endfor %}
+
+                {% if paginates.has_next %}
+                   <a class="next-page" href="?page={{ paginates.next_page_number }}"><i class="fa fa-angle-right"></i></a>
+                {% endif %}
+              </nav>              
+            </div>
+          {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% for product in paginates %}
+      
+    <div class="md-modal md-effect-3" id="modal-{{product.id}}">
+      <div class="md-content">
+          <!-- Product Info Start -->
+          <div class="product-info row">
+            <div class="col-md-4 col-sm-6 col-xs-12">
+              <div class="product-details-image">
+                <div class="slider-for slider">
+                  <div>
+                    <img src="{{product.image.url}}" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-8 col-sm-6 col-xs-12">
+              <div class="info-panel">
+                <h1 class="product-title">
+                  <a href="{% url 'single-product' product.slug %}">{{product.name}}</a>
+                </h1>
+                <!-- Rattion Price -->
+                <div class="price-ratting">
+                  <div class="price float-left">
+                    $ {{product.price}}
+                  </div>
+                </div>
+                <!-- Short Description -->
+                <div class="short-desc">
+                  <h5 class="sub-title">Quick Overview</h5>
+                  <p>{{product.quick_overview}}</p>
+                </div> 
+                <!-- Quantity Cart -->
+                <div class="quantity-cart">
+
+                  {% if product.stock > 0 %}
+                      <button class="btn btn-common"><i class="icon-basket"></i> add to cart</button>
+                  {% else %}
+                      <button class="btn btn-common"> Stock out</button>
+                  {% endif %}
+                </div>
+                <!-- Share -->
+                <div class="share-icons pull-right">
+                  <span>share :</span>
+                  <a href="#"><i class="fa fa-facebook"></i></a>
+                  <a href="#"><i class="fa fa-twitter"></i></a>
+                  <a href="#"><i class="fa fa-instagram"></i></a>
+                  <a href="#"><i class="fa fa-pinterest"></i></a>
+                </div>
+              </div>
+            </div>      
+          </div>
+          <!-- Product Info End -->
+          <button class="md-close"><i class="icon-close"></i></button>
+      </div>
+    </div>
+{% endfor %}
+   
+
+    {% endblock main %}

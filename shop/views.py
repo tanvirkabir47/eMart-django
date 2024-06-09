@@ -1,12 +1,15 @@
+import stripe
 from decimal import Decimal
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404, redirect, render
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse
 from django.contrib import messages
-from .models import Cart, Product, Category, ProductReview, Wishlist
+from .models import Cart, Product, Category, ProductReview, Wishlist, Order
 from django.views.decorators.csrf import csrf_exempt
 from django.db.models import Count
+from django.core.paginator import Paginator
+from django.conf import settings
 
 # Create your views here.
 
@@ -18,7 +21,11 @@ def home(request):
 def all_product(request):
     products = Product.objects.all()
     categories = Category.objects.annotate(product_count=Count('product'))
-    return render(request, 'shop-category.html', {'products': products, 'categories': categories})
+    paginator = Paginator(products, 3)
+    
+    page = request.GET.get('page', 1)
+    paginates = paginator.page(page)
+    return render(request, 'shop-category.html', {'categories': categories, 'paginates': paginates,})
 
 def categories_view(request, slug):
     category = get_object_or_404(Category, slug=slug)
@@ -177,3 +184,102 @@ def about(request):
 
 def contact(request):
     return render(request, 'contact.html')
+
+
+def search(request):
+    query = request.POST.get('search')
+    if query:
+        products = Product.objects.filter(name__icontains=query)
+    else:
+        products = Product.objects.all()
+        
+    product_count = products.count()
+    paginator = Paginator(products, 8)
+    
+    page = request.GET.get('page', 1)
+    paginates = paginator.get_page(page)
+    
+    return render(request, 'search.html', {
+        'products': products,
+        'query': query, 
+        'paginates': paginates,
+        'show_pagination': product_count > 8
+    })
+    
+    
+@login_required
+def checkout(request):
+    user = request.user
+    cart_items = Cart.objects.filter(user=user)
+
+    cart_item_details = []
+    cart_subtotal = 0
+    for item in cart_items:
+        total_price = item.product.price * item.quantity
+        cart_subtotal += total_price
+        cart_item_details.append({
+            'product': item.product,
+            'quantity': item.quantity,
+            'total_price': total_price
+        })
+
+    shipping_cost = 50
+    discount = cart_subtotal * Decimal(0.05)
+    cart_total = cart_subtotal + shipping_cost - discount
+
+    if request.method == 'POST':
+        token = request.POST.get('stripeToken')
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        email = request.POST.get('email')
+        address = request.POST.get('address')
+        phone = request.POST.get('phone')
+        city = request.POST.get('city')
+        postal_code = request.POST.get('postal_code')
+        state = request.POST.get('state')
+        country = request.POST.get('country')
+
+        if not all([first_name, last_name, email, address, phone, city, postal_code, state, country]):
+            messages.error(request, "Please fill in all required fields.")
+            return redirect('checkout')
+
+        try:
+            stripe.api_key = settings.STRIPE_SECRET_KEY
+            charge = stripe.Charge.create(
+                amount=int(cart_total * 100),  # Stripe expects the amount in cents
+                currency='usd',
+                description='Example charge',
+                source=token,
+            )
+
+            # Create order and save to database
+            order = Order.objects.create(
+                user=user,
+                first_name=first_name,
+                last_name=last_name,
+                email=email,
+                address=address,
+                phone=phone,
+                city=city,
+                postal_code=postal_code,
+                state=state,
+                country=country,
+                total_price=cart_total
+            )
+
+            # Once payment is successful, clear the cart and show success message
+            cart_items.delete()
+            messages.success(request, "Thank you for your order!")
+            return redirect('home')
+
+        except stripe.error.CardError as e:
+            messages.error(request, "Your card has been declined.")
+
+    return render(request, 'checkout.html', {
+        'cart_items': cart_item_details,
+        'cart_total': cart_total,
+        'cart_subtotal': cart_subtotal,
+        'shipping_cost': shipping_cost,
+        'discount': discount,
+        'stripe_publishable_key': settings.STRIPE_PUBLISHABLE_KEY
+    })
