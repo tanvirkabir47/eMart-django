@@ -97,7 +97,7 @@
                 <button type="submit"
                   class="btn btn-common btn-full"
                   data-key="{{ stripe_publishable_key }}"
-                  data-amount="{{ cart_total|floatformat:2|floatformat:0 }}"
+                  data-amount="{{ amount_in_cents }}"
                   data-locale="auto"
                   data-currency="usd"
                   src="https://checkout.stripe.com/checkout.js"
@@ -106,7 +106,7 @@
                 <script
                     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                     data-key="{{ stripe_publishable_key }}"
-                    data-amount="{{ cart_total|floatformat:2|floatformat:0 }}"
+                    data-amount="{{ amount_in_cents }}"
                     data-name="Your Site Name"
                     data-description="Widget"
                     data-image="https://stripe.com/img/documentation/checkout/marketplace.png"

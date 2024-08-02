@@ -236,6 +236,7 @@ def checkout(request):
     shipping_cost = 50
     discount = cart_subtotal * Decimal(0.05)
     cart_total = cart_subtotal + shipping_cost - discount
+    amount_in_cents = int(cart_total * 100)
 
     if request.method == 'POST':
         token = request.POST.get('stripeToken')
@@ -256,7 +257,7 @@ def checkout(request):
         try:
             stripe.api_key = settings.STRIPE_SECRET_KEY
             charge = stripe.Charge.create(
-                amount=int(cart_total * 100),  # Stripe expects the amount in cents
+                amount=amount_in_cents,  # Stripe expects the amount in cents
                 currency='usd',
                 description='Example charge',
                 source=token,
@@ -288,6 +289,7 @@ def checkout(request):
     return render(request, 'checkout.html', {
         'cart_item': cart_item_details,
         'cart_total': cart_total,
+        'amount_in_cents': amount_in_cents,
         'cart_subtotal': cart_subtotal,
         'shipping_cost': shipping_cost,
         'discount': discount,
